@@ -1,0 +1,10 @@
+# Ignore environment files and local configs
+.env*
+supabase-config.local.js
+
+# Ignore common system files
+.DS_Store
+.vscode/
+
+# Ignore node modules if you ever use npm
+node_modules/ 

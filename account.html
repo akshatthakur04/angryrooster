@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Angry Rooster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="account.css">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <img src="logo.svg" alt="Angry Rooster">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-link" data-text="HOME">HOME</a>
+                <a href="about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
+                <a href="performance.html" class="nav-link" data-text="PERFORMANCE">PERFORMANCE</a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.svg" alt="Angry Rooster" class="logo">
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="account.html" class="nav-link" data-text="ACCOUNT">ACCOUNT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Account Section -->
+    <main class="account-main">
+        <div class="account-container">
+            <!-- This container will be toggled once logged in -->
+            <div id="auth-container" class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-form-wrapper" id="login-form-wrapper">
+                        <h1 class="auth-title">Member Login</h1>
+                        <p class="auth-subtitle">Welcome back. The grind continues.</p>
+                        <form id="login-form">
+                            <div class="input-group">
+                                <input type="email" id="login-email" required>
+                                <label for="login-email">Email</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="login-password" required>
+                                <label for="login-password">Password</label>
+                            </div>
+                            <button type="submit" class="auth-button">Login</button>
+                        </form>
+                        <p class="auth-switch">Not a member? <a href="#" id="show-signup">Create Account</a></p>
+                    </div>
+                    <div class="auth-form-wrapper" id="signup-form-wrapper" style="display: none;">
+                        <h1 class="auth-title">Create Account</h1>
+                        <p class="auth-subtitle">Join the relentless.</p>
+                        <form id="signup-form">
+                            <div class="input-group">
+                                <input type="email" id="signup-email" required>
+                                <label for="signup-email">Email</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="signup-password" required>
+                                <label for="signup-password">Password</label>
+                            </div>
+                            <button type="submit" class="auth-button">Create Account</button>
+                        </form>
+                        <p class="auth-switch">Already a member? <a href="#" id="show-login">Login</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This container will be shown when the user is logged in -->
+            <div id="dashboard-container" class="dashboard-container" style="display: none;">
+                <!-- Profile Header -->
+                <header class="profile-header">
+                    <div class="avatar-container">
+                        <div class="profile-avatar" id="profile-avatar">
+                            <!-- JS will generate initials -->
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <p class="profile-email" id="user-email">user@example.com</p>
+                        <p class="profile-member-since">MEMBER SINCE 2024</p>
+                    </div>
+                    <button class="edit-profile-btn" id="edit-profile-btn">Edit Profile</button>
+                </header>
+
+                <!-- Order History Timeline -->
+                <section class="order-history">
+                    <h2 class="section-title">Order History</h2>
+                    <div class="timeline" id="order-timeline">
+                        <div class="timeline-empty">
+                            <p>The grind is yet to begin.</p>
+                            <span>You have no past orders.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <button id="logout-button" class="logout-button-redesigned">Log Out</button>
+            </div>
+             <div id="message-container" class="message-container"></div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="edit-modal-overlay">
+        <div class="modal-card" id="edit-modal-card">
+            <button class="close-modal-btn" id="close-modal-btn">&times;</button>
+            <h2 class="modal-title">Update Your Details</h2>
+            <p class="modal-subtitle">Change your password below.</p>
+            <form id="update-password-form">
+                <div class="input-group">
+                    <input type="password" id="new-password" required>
+                    <label for="new-password">New Password</label>
+                </div>
+                <button type="submit" class="auth-button">Update Password</button>
+            </form>
+            <div id="modal-message-container"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+         <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; ANGRY ROOSTER 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase and App Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.local.js"></script>
+    <script src="account.js"></script>
+    <script src="main.js"></script> <!-- General purpose JS like cursor -->
+</body>
+</html> 
