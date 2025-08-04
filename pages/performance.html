@@ -7,15 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="performance.css">
-    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/performance.css">
+    <link rel="icon" type="image/svg+xml" href="../logo.svg">
 </head>
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-logo">
-            <img src="logo.svg" alt="Angry Rooster">
+            <img src="../logo.svg" alt="Angry Rooster">
             <div class="loading-bar"></div>
         </div>
     </div>
@@ -26,13 +26,13 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-left">
-                <a href="index.html" class="nav-link" data-text="HOME">HOME</a>
+                <a href="../index.html" class="nav-link" data-text="HOME">HOME</a>
                 <a href="about.html" class="nav-link" data-text="ABOUT">ABOUT</a>
-                <a href="performance.html" class="nav-link" data-text="PERFORMANCE">PERFORMANCE</a>
+                <a href="performance.html" class="nav-link" data-text="PRODUCTS">PRODUCTS</a>
             </div>
             <div class="nav-center">
-                <a href="index.html" class="logo-link">
-                    <img src="logo.svg" alt="Angry Rooster" class="logo">
+                <a href="../index.html" class="logo-link">
+                    <img src="../logo.svg" alt="Angry Rooster" class="logo">
                 </a>
             </div>
             <div class="nav-right">
@@ -51,7 +51,7 @@
         <!-- Product 1: Power Drape Tee -->
         <section class="product-showcase animate-on-scroll">
             <div class="product-image-container">
-                <img src="Heropage.png" alt="Power Drape™ Tee" class="product-image">
+                <img src="../Heropage.png" alt="Power Drape™ Tee" class="product-image">
             </div>
             <div class="product-info">
                 <h2 class="product-name">Power Drape™ Tee</h2>
@@ -67,14 +67,24 @@
                         <li><strong>Oversized cut</strong> – engineered to strike mid-bicep and below the belt for stacked proportions</li>
                     </ul>
                 </div>
-                <button class="product-cta-button">Explore the Tee</button>
+
+                <div class="product-actions">
+                    <a href="tshirt.html" class="view-product-btn">
+                        <span>View Product</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7,7 17,7 17,17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
             </div>
         </section>
 
         <!-- Product 2: PowerKnit Hoodie -->
         <section class="product-showcase reverse animate-on-scroll">
             <div class="product-image-container">
-                <img src="Background.jpg" alt="PowerKnit™ Training Hoodie" class="product-image">
+                <img src="../Hoodie.png" alt="PowerKnit™ Training Hoodie" class="product-image">
             </div>
             <div class="product-info">
                 <h2 class="product-name">PowerKnit™ Training Hoodie</h2>
@@ -91,7 +101,17 @@
                         <li><strong>Tear-resistant seams</strong> – bar-tacked at stress points for max longevity</li>
                     </ul>
                 </div>
-                <button class="product-cta-button">Explore the Hoodie</button>
+
+                <div class="product-actions">
+                    <a href="hoodie.html" class="view-product-btn">
+                        <span>View Product</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7,7 17,7 17,17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
             </div>
         </section>
 

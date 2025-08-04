@@ -1,0 +1,1508 @@
+/* T-Shirt Product Page Styles */
+/* Inherits from hoodie.css design system but tailored for the Power Drape™ Tee */
+
+:root {
+    --revolutionary-black: #000000;
+    --revolutionary-white: #ffffff;
+    --revolutionary-gray-50: #f9fafb;
+    --revolutionary-gray-100: #f3f4f6;
+    --revolutionary-gray-200: #e5e7eb;
+    --revolutionary-gray-800: #1f2937;
+    --revolutionary-gray-900: #111827;
+    --curve-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --curve-dramatic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Enhanced Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--revolutionary-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s var(--curve-smooth);
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-content img {
+    width: 60px !important;
+    height: auto !important;
+    margin-bottom: 30px;
+    animation: logoFloat 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.loading-bar {
+    width: 200px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--revolutionary-white);
+    animation: loadingProgress 2s ease-in-out infinite;
+}
+
+@keyframes loadingProgress {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    position: fixed;
+    top: 20px;
+    left: 8vw;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeInUp 1s var(--curve-smooth) 0.5s forwards;
+}
+
+.breadcrumb-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.3s var(--curve-smooth);
+}
+
+.breadcrumb-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.breadcrumb-separator {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 4px;
+}
+
+.breadcrumb-current {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Hero Section */
+.product-hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--revolutionary-black);
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) contrast(1.1);
+    animation: heroBackgroundFloat 8s ease-in-out infinite;
+}
+
+@keyframes heroBackgroundFloat {
+    0%, 100% { transform: scale(1.02) translateY(0px); }
+    50% { transform: scale(1.05) translateY(-20px); }
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 30%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.3) 80%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+    z-index: 2;
+}
+
+.image-grain {
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.02) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.02) 0%, transparent 50%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.image-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none;
+    z-index: 4;
+}
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6vw;
+    pointer-events: none;
+}
+
+.hero-text {
+    text-align: center;
+    max-width: 800px;
+    pointer-events: auto;
+}
+
+
+
+.hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: 400;
+    color: var(--revolutionary-white);
+    line-height: 0.9;
+    margin-bottom: 48px;
+    letter-spacing: 0.01em;
+    text-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+}
+
+.title-line {
+    display: block;
+    transform: translateY(80px);
+    opacity: 0;
+    animation: titleReveal 1.2s var(--curve-dramatic) forwards;
+}
+
+.title-line:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+@keyframes titleReveal {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.hero-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInUp 1s var(--curve-smooth) 0.8s forwards;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Clean Floating Gallery Controls */
+.hero-gallery-floating {
+    position: absolute;
+    top: 50%;
+    left: 8vw;
+    transform: translateY(-50%);
+    z-index: 6;
+    pointer-events: auto;
+}
+
+.gallery-controls {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px 16px;
+    opacity: 0;
+    animation: fadeInUp 1s var(--curve-smooth) 1.4s forwards;
+    min-width: 100px;
+}
+
+.gallery-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.gallery-thumb {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s var(--curve-smooth);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 4px 4px 4px;
+}
+
+.gallery-thumb::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s var(--curve-smooth);
+}
+
+.gallery-thumb:hover::before {
+    opacity: 1;
+}
+
+.gallery-thumb img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 6px;
+    opacity: 0.7;
+    transition: opacity 0.3s var(--curve-smooth);
+}
+
+.thumb-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 2px;
+    transition: color 0.3s var(--curve-smooth);
+}
+
+.gallery-thumb:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-thumb:hover img {
+    opacity: 1;
+}
+
+.gallery-thumb:hover .thumb-label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.gallery-thumb.active {
+    border-color: var(--revolutionary-white);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.gallery-thumb.active img {
+    opacity: 1;
+}
+
+.gallery-thumb.active .thumb-label {
+    color: var(--revolutionary-white);
+}
+
+.zoom-btn {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s var(--curve-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--revolutionary-white);
+}
+
+.zoom-btn svg {
+    width: 12px;
+    height: 12px;
+}
+
+/* Enhanced Purchase Panel */
+.hero-purchase-floating {
+    position: absolute;
+    top: 50%;
+    right: 8vw;
+    transform: translateY(-50%);
+    z-index: 6;
+    pointer-events: auto;
+}
+
+.purchase-panel-clean {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 32px 24px;
+    opacity: 0;
+    animation: fadeInUp 1s var(--curve-smooth) 1.2s forwards;
+    min-width: 280px;
+    max-width: 320px;
+}
+
+.product-title-clean {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--revolutionary-white);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.product-description-clean {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+.price-display-clean {
+    text-align: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-current-clean {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--revolutionary-white);
+    display: block;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.price-details-clean {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.price-original-clean {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: line-through;
+    font-weight: 300;
+}
+
+.price-note-clean {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.product-features-clean {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+/* Size Selection */
+.size-selection-clean {
+    margin-bottom: 20px;
+}
+
+.size-label-clean {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.size-options-clean {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.size-input-clean {
+    display: none;
+}
+
+.size-option-clean {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s var(--curve-smooth);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.size-option-clean:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--revolutionary-white);
+}
+
+.size-input-clean:checked + .size-option-clean {
+    border-color: var(--revolutionary-white);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--revolutionary-white);
+}
+
+/* Quantity Selection */
+.quantity-selection-clean {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding: 0 20px;
+}
+
+.quantity-label-clean {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.quantity-controls-clean {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 8px 16px;
+}
+
+.qty-btn-clean {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s var(--curve-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn-clean:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--revolutionary-white);
+}
+
+.qty-display-clean {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--revolutionary-white);
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Notify Me Button */
+.notify-me-btn {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: var(--revolutionary-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s var(--curve-smooth);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.notify-me-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.notify-me-btn:active {
+    transform: scale(0.98);
+}
+
+.notify-me-btn svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+}
+
+.notify-btn-bg {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s var(--curve-smooth);
+    pointer-events: none;
+}
+
+.notify-me-btn:hover .notify-btn-bg {
+    left: 100%;
+}
+
+/* Enhanced Scroll Indicator */
+.scroll-indicator-enhanced {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeInUp 1s var(--curve-smooth) 1.8s forwards;
+}
+
+.scroll-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.scroll-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s var(--curve-smooth);
+}
+
+.scroll-dot.active {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.scroll-dot:nth-child(2) {
+    animation: scrollDotPulse 2s ease-in-out infinite 0.3s;
+}
+
+.scroll-dot:nth-child(3) {
+    animation: scrollDotPulse 2s ease-in-out infinite 0.6s;
+}
+
+@keyframes scrollDotPulse {
+    0%, 70%, 100% { 
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1);
+    }
+    35% { 
+        background: rgba(255, 255, 255, 0.8);
+        transform: scale(1.2);
+    }
+}
+
+.scroll-arrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    animation: scrollArrowFloat 2s ease-in-out infinite;
+    margin-top: 8px;
+}
+
+@keyframes scrollArrowFloat {
+    0%, 100% { 
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translateY(8px);
+        opacity: 1;
+    }
+}
+
+/* Main Product Container */
+.product-main {
+    background: var(--revolutionary-white);
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+.product-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 80px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .hero-content {
+        padding: 0 4vw;
+    }
+    
+    .breadcrumbs {
+        left: 4vw;
+        font-size: 9px;
+    }
+    
+    .hero-gallery-floating {
+        left: 4vw;
+    }
+    
+    .hero-purchase-floating {
+        right: 4vw;
+    }
+    
+    .purchase-panel-clean {
+        min-width: 260px;
+        max-width: 280px;
+        padding: 28px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        justify-content: center;
+        padding: 0 20px;
+    }
+    
+    .hero-text {
+        max-width: 100%;
+    }
+    
+    .hero-title {
+        font-size: clamp(3.5rem, 10vw, 6rem);
+        margin-bottom: 32px;
+    }
+    
+    .hero-tagline {
+        font-size: 18px;
+    }
+    
+    .hero-gallery-floating {
+        position: static;
+        transform: none;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .gallery-controls {
+        min-width: 80px;
+        padding: 16px 12px;
+    }
+    
+    .gallery-thumbnails {
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .gallery-thumb {
+        width: 50px;
+        height: 50px;
+        padding: 6px 3px 3px 3px;
+    }
+    
+    .gallery-thumb img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .thumb-label {
+        font-size: 7px;
+    }
+    
+    .zoom-btn {
+        padding: 6px;
+        font-size: 8px;
+    }
+    
+    .zoom-btn svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    .hero-purchase-floating {
+        position: static;
+        transform: none;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .purchase-panel-clean {
+        min-width: 300px;
+        max-width: 320px;
+    }
+    
+    .breadcrumbs {
+        position: static;
+        justify-content: center;
+        margin: 20px 0 10px 0;
+        padding: 0 20px;
+    }
+    
+    .product-container {
+        padding: 0 20px;
+    }
+}
+
+/* Import action zone, showcase, and modal styles from hoodie.css structure */
+/* These remain largely the same with t-shirt specific adaptations */
+
+/* Revolutionary Action Zone - Adapted for T-Shirt */
+.action-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 120px;
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--revolutionary-gray-50) 0%, var(--revolutionary-white) 100%);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-zone::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+.primary-action {
+    position: relative;
+}
+
+.notify-me-revolutionary {
+    position: relative;
+    padding: 24px 48px;
+    background: var(--revolutionary-black);
+    color: var(--revolutionary-white);
+    border: none;
+    border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s var(--curve-smooth);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notify-me-revolutionary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.notify-me-revolutionary:active {
+    transform: translateY(-2px);
+}
+
+.notify-me-revolutionary svg {
+    opacity: 0.9;
+}
+
+.btn-pulse {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s var(--curve-smooth);
+}
+
+.notify-me-revolutionary:hover .btn-pulse {
+    transform: translateX(100%);
+}
+
+.secondary-actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.wishlist-revolutionary,
+.share-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background: var(--revolutionary-white);
+    border: 2px solid var(--revolutionary-gray-200);
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--revolutionary-gray-800);
+    cursor: pointer;
+    transition: all 0.3s var(--curve-smooth);
+}
+
+.wishlist-revolutionary:hover,
+.share-btn:hover {
+    border-color: var(--revolutionary-black);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist-revolutionary.active {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #dc2626;
+}
+
+/* Revolutionary Product Showcase - T-Shirt Features */
+.product-showcase-revolutionary {
+    margin-bottom: 120px;
+    background: linear-gradient(135deg, var(--revolutionary-gray-50) 0%, var(--revolutionary-white) 50%, var(--revolutionary-gray-50) 100%);
+    border-radius: 24px;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.showcase-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.showcase-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--revolutionary-black);
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.showcase-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--revolutionary-gray-800);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 60px;
+    align-items: start;
+}
+
+.feature-card {
+    background: var(--revolutionary-white);
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s var(--curve-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--revolutionary-black), var(--revolutionary-gray-800));
+    transform: scaleX(0);
+    transition: transform 0.4s var(--curve-smooth);
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    height: 120px;
+    position: relative;
+}
+
+.feature-icon-modern {
+    width: 60px;
+    height: 60px;
+    background: var(--revolutionary-gray-100);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--revolutionary-gray-800);
+    transition: all 0.3s var(--curve-smooth);
+    z-index: 2;
+}
+
+.feature-card:hover .feature-icon-modern {
+    background: var(--revolutionary-black);
+    color: var(--revolutionary-white);
+    transform: scale(1.1);
+}
+
+.feature-content-modern {
+    text-align: center;
+}
+
+.feature-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--revolutionary-black);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.feature-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--revolutionary-gray-800);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.feature-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.metric-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--revolutionary-black);
+    letter-spacing: 1px;
+}
+
+.metric-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--revolutionary-gray-800);
+}
+
+/* T-Shirt Specific Feature Animations */
+.moisture-visual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.droplet {
+    width: 8px;
+    height: 12px;
+    background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: dropletFall 2s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.droplet:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.droplet:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes dropletFall {
+    0% { transform: translateY(-10px); opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+}
+
+.stretch-visual {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+    padding: 20px;
+    z-index: 1;
+}
+
+.stretch-indicator {
+    background: linear-gradient(45deg, var(--revolutionary-gray-300), var(--revolutionary-gray-400));
+    border-radius: 4px;
+    animation: stretchMove 3s ease-in-out infinite;
+}
+
+.stretch-indicator:nth-child(1) {
+    animation-delay: 0s;
+    transform-origin: top left;
+}
+
+.stretch-indicator:nth-child(2) {
+    animation-delay: 0.75s;
+    transform-origin: top right;
+}
+
+.stretch-indicator:nth-child(3) {
+    animation-delay: 1.5s;
+    transform-origin: bottom left;
+}
+
+.stretch-indicator:nth-child(4) {
+    animation-delay: 2.25s;
+    transform-origin: bottom right;
+}
+
+@keyframes stretchMove {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.2) rotate(5deg); }
+    50% { transform: scale(0.8) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(3deg); }
+}
+
+/* Tech Specs - Same structure as hoodie but adapted for t-shirt */
+.tech-specs-revolutionary {
+    background: var(--revolutionary-black);
+    border-radius: 24px;
+    padding: 80px 60px;
+    color: var(--revolutionary-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-specs-revolutionary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.specs-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.specs-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--revolutionary-white);
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.specs-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.spec-category {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 40px 32px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s var(--curve-smooth);
+}
+
+.spec-category:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-4px);
+}
+
+.spec-category-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--revolutionary-white);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.spec-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.spec-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.spec-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--revolutionary-white);
+    text-align: right;
+}
+
+/* Image Modal Styles - Same as hoodie */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s var(--curve-smooth);
+}
+
+.image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    position: relative;
+    z-index: 2;
+    max-width: 90vw;
+    max-height: 90vh;
+    transform: scale(0.8);
+    transition: transform 0.4s var(--curve-smooth);
+}
+
+.image-modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--revolutionary-white);
+    cursor: pointer;
+    transition: all 0.3s var(--curve-smooth);
+    backdrop-filter: blur(10px);
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.modal-gallery {
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+}
+
+.modal-image {
+    display: block;
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s var(--curve-smooth);
+}
+
+.modal-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-nav-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s var(--curve-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-nav-btn:hover {
+    color: var(--revolutionary-white);
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.modal-indicators {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.modal-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s var(--curve-smooth);
+}
+
+.modal-indicator.active {
+    background: var(--revolutionary-white);
+    transform: scale(1.2);
+}
+
+.modal-indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+/* Mobile Modal Adjustments */
+@media (max-width: 768px) {
+    .modal-close {
+        top: -50px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .modal-image {
+        max-width: 95vw;
+        max-height: 85vh;
+    }
+    
+    .modal-nav {
+        bottom: 10px;
+        padding: 8px 16px;
+    }
+    
+    .modal-nav-btn {
+        padding: 6px;
+    }
+    
+    .product-container {
+        padding: 60px 20px;
+    }
+    
+    .action-zone {
+        padding: 60px 20px;
+        margin-bottom: 80px;
+    }
+    
+    .secondary-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .wishlist-revolutionary,
+    .share-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .product-showcase-revolutionary {
+        padding: 60px 20px;
+        margin-bottom: 80px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .tech-specs-revolutionary {
+        padding: 60px 20px;
+    }
+    
+    .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}

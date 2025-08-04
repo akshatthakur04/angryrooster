@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerKnit™ Training Hoodie - Angry Rooster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/hoodie.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.local.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <img src="../logo.svg" alt="Angry Rooster">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <a href="../index.html" class="breadcrumb-link">HOME</a>
+        <span class="breadcrumb-separator">→</span>
+        <a href="performance.html" class="breadcrumb-link">PRODUCTS</a>
+        <span class="breadcrumb-separator">→</span>
+        <span class="breadcrumb-current">POWERKNIT HOODIE</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="about.html" class="nav-link">About</a>
+                <a href="performance.html" class="nav-link">Products</a>
+            </div>
+            <div class="nav-center">
+                <a href="../index.html" class="logo-link">
+                    <img src="../logo.svg" alt="Angry Rooster" class="logo">
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="waitlist.html" class="nav-link">Waitlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cinematic Hero Section -->
+    <section class="product-hero">
+        <div class="hero-background">
+            <img src="../product page.png" alt="PowerKnit™ Training Hoodie Background" class="hero-background-image">
+            <div class="hero-overlay"></div>
+            <div class="image-grain"></div>
+            <div class="image-vignette"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">PowerKnit™</span>
+                    <span class="title-line">Training Hoodie</span>
+                </h1>
+                <div class="hero-tagline">Breathable Fleece · Gym-Grade Ribbing · Built to Last</div>
+            </div>
+        </div>
+
+        <!-- Image Gallery Controls -->
+        <div class="hero-gallery-floating">
+            <div class="gallery-controls">
+                <div class="gallery-label">VIEW</div>
+                <div class="gallery-thumbnails">
+                    <button class="gallery-thumb active" data-image="../product page.png" data-alt="PowerKnit™ Training Hoodie Back">
+                        <img src="../product page.png" alt="Back View">
+                        <span class="thumb-label">BACK</span>
+                    </button>
+                    <button class="gallery-thumb" data-image="../Front.png" data-alt="PowerKnit™ Training Hoodie Front">
+                        <img src="../Front.png" alt="Front View">
+                        <span class="thumb-label">FRONT</span>
+                    </button>
+                </div>
+                <button class="zoom-btn" onclick="openImageModal()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                        <path d="M11 8v6"></path>
+                        <path d="M8 11h6"></path>
+                    </svg>
+                    <span>ZOOM</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Enhanced Purchase Panel -->
+        <div class="hero-purchase-floating">
+            <div class="purchase-panel-clean">
+                <div class="product-title-clean">ANGRY ROOSTER HOODIE</div>
+                <div class="product-description-clean">Premium fleece engineered for performance and comfort</div>
+                
+                <div class="price-display-clean">
+                    <span class="price-current-clean">£39.99</span>
+                    <div class="price-details-clean">
+                        <span class="price-note-clean">Pre-order pricing</span>
+                    </div>
+                </div>
+
+                <div class="product-features-clean">
+                    Athletic Oversized • UK Designed • Built to Last
+                </div>
+
+                <div class="size-selection-clean">
+                    <div class="size-label-clean">SIZE</div>
+                    <div class="size-options-clean">
+                        <input type="radio" id="size-s" name="size" value="S" class="size-input-clean">
+                        <label for="size-s" class="size-option-clean">S</label>
+                        
+                        <input type="radio" id="size-m" name="size" value="M" class="size-input-clean" checked>
+                        <label for="size-m" class="size-option-clean">M</label>
+                        
+                        <input type="radio" id="size-l" name="size" value="L" class="size-input-clean">
+                        <label for="size-l" class="size-option-clean">L</label>
+                        
+                        <input type="radio" id="size-xl" name="size" value="XL" class="size-input-clean">
+                        <label for="size-xl" class="size-option-clean">XL</label>
+                    </div>
+                </div>
+
+                <div class="quantity-selection-clean">
+                    <div class="quantity-label-clean">QTY</div>
+                    <div class="quantity-controls-clean">
+                        <button type="button" class="qty-btn-clean" onclick="adjustQuantity(-1)">−</button>
+                        <span class="qty-display-clean" id="quantity">1</span>
+                        <button type="button" class="qty-btn-clean" onclick="adjustQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <button class="notify-me-btn" onclick="notifyMeWhenReady()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                        <path d="m13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span>NOTIFY WHEN PRE-ORDERS OPEN</span>
+                    <div class="notify-btn-bg"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Enhanced Scroll Indicator -->
+        <div class="scroll-indicator-enhanced">
+            <div class="scroll-dots">
+                <div class="scroll-dot active"></div>
+                <div class="scroll-dot"></div>
+                <div class="scroll-dot"></div>
+            </div>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Product Detail Main -->
+    <main class="product-main">
+        <div class="product-container">
+
+
+
+                <!-- Dramatic Action Zone -->
+                <div class="action-zone">
+                    <div class="primary-action">
+                        <button class="notify-me-revolutionary" id="notifyBtn" onclick="notifyMeWhenReady()">
+                            <div class="btn-background"></div>
+                            <div class="btn-content">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                                    <path d="m13.73 21a2 2 0 0 1-3.46 0"></path>
+                                </svg>
+                                <span class="btn-text">NOTIFY WHEN PRE-ORDERS OPEN</span>
+                                <div class="btn-price">£39.99</div>
+                            </div>
+                            <div class="btn-loading-state">
+                                <div class="loading-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="btn-ripple"></div>
+                        </button>
+                    </div>
+                    
+                    <div class="secondary-actions">
+                        <button class="wishlist-revolutionary" id="wishlistBtn">
+                            <div class="wishlist-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </div>
+                            <span class="wishlist-text">Save</span>
+                        </button>
+                        
+                        <button class="share-btn">
+                            <div class="share-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </div>
+                            <span class="share-text">Share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Revolutionary Product Showcase -->
+                <div class="product-showcase-revolutionary">
+                    <div class="showcase-header">
+                        <h2 class="showcase-title">ENGINEERED FOR PERFORMANCE</h2>
+                        <div class="showcase-subtitle">Every detail meticulously crafted for the relentless pursuit of excellence</div>
+                    </div>
+                    
+                    <div class="feature-grid-revolutionary">
+                        <div class="feature-card" data-feature="thermal">
+                            <div class="feature-visual">
+                                <div class="feature-icon-modern">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="feature-graph">
+                                    <div class="graph-bar" style="height: 85%"></div>
+                                    <div class="graph-bar" style="height: 60%"></div>
+                                    <div class="graph-bar" style="height: 90%"></div>
+                                    <div class="graph-bar" style="height: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="feature-content-modern">
+                                <h3 class="feature-title">Thermal Regulation</h3>
+                                <p class="feature-description">350 gsm thermal fleece engineered to trap heat while maintaining breathability—warmth without the bulk.</p>
+                                <div class="feature-metric">
+                                    <span class="metric-value">85%</span>
+                                    <span class="metric-label">Heat Retention</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-card" data-feature="airflow">
+                            <div class="feature-visual">
+                                <div class="feature-icon-modern">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/>
+                                        <path d="M9.6 4.6A2 2 0 1 1 11 8H2"/>
+                                        <path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>
+                                    </svg>
+                                </div>
+                                <div class="airflow-visual">
+                                    <div class="airflow-line"></div>
+                                    <div class="airflow-line"></div>
+                                    <div class="airflow-line"></div>
+                                </div>
+                            </div>
+                            <div class="feature-content-modern">
+                                <h3 class="feature-title">Strategic Ventilation</h3>
+                                <p class="feature-description">Air-Flow rib panels positioned at high-heat zones for targeted cooling when your intensity peaks.</p>
+                                <div class="feature-metric">
+                                    <span class="metric-value">3X</span>
+                                    <span class="metric-label">Faster Cooling</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-card" data-feature="durability">
+                            <div class="feature-visual">
+                                <div class="feature-icon-modern">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                                        <path d="m9 12 2 2 4-4"/>
+                                    </svg>
+                                </div>
+                                <div class="durability-visual">
+                                    <div class="stress-point"></div>
+                                    <div class="stress-point"></div>
+                                    <div class="stress-point"></div>
+                                    <div class="stress-point"></div>
+                                </div>
+                            </div>
+                            <div class="feature-content-modern">
+                                <h3 class="feature-title">Battle-Tested Build</h3>
+                                <p class="feature-description">Tear-resistant seams with bar-tacking at every stress point. Built to outlast your toughest sessions.</p>
+                                <div class="feature-metric">
+                                    <span class="metric-value">5X</span>
+                                    <span class="metric-label">Stronger Seams</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Immersive Tech Specs -->
+                <div class="tech-specs-revolutionary">
+                    <div class="specs-header">
+                        <h2 class="specs-title">TECHNICAL SPECIFICATIONS</h2>
+                        <div class="specs-tagline">Precision engineering meets uncompromising performance</div>
+                    </div>
+                    
+                    <div class="specs-grid">
+                        <div class="spec-category">
+                            <h3 class="spec-category-title">CONSTRUCTION</h3>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Material</span>
+                                    <span class="spec-value">350 gsm thermal fleece blend</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Hood Design</span>
+                                    <span class="spec-value">Stay-Flat three-panel</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Seam Construction</span>
+                                    <span class="spec-value">Reinforced cover-stitching</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-category">
+                            <h3 class="spec-category-title">PERFORMANCE</h3>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Ventilation</span>
+                                    <span class="spec-value">Air-Flow rib panels</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Fit Profile</span>
+                                    <span class="spec-value">Athletic oversized</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Mobility</span>
+                                    <span class="spec-value">Unrestricted range</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-category">
+                            <h3 class="spec-category-title">CARE & ORIGIN</h3>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Care Instructions</span>
+                                    <span class="spec-value">Machine wash cold</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Designed</span>
+                                    <span class="spec-value">United Kingdom</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Warranty</span>
+                                    <span class="spec-value">30-day guarantee</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-backdrop" onclick="closeImageModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeImageModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-gallery">
+                <img id="modalImage" src="" alt="" class="modal-image">
+                <div class="modal-nav">
+                    <button class="modal-nav-btn prev" onclick="switchModalImage(-1)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15,18 9,12 15,6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="modal-indicators">
+                        <span class="modal-indicator active" data-index="0"></span>
+                        <span class="modal-indicator" data-index="1"></span>
+                    </div>
+                    <button class="modal-nav-btn next" onclick="switchModalImage(1)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/hoodie.js"></script>
+</body>
+</html>

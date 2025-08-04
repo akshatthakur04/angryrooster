@@ -52,8 +52,15 @@ body {
 }
 
 .loading-logo img {
-    width: 200px;
-    height: auto;
+    width: 60px !important;
+    height: auto !important;
+    margin-bottom: 30px;
+    animation: logoFloat 2s ease-in-out infinite alternate;
+}
+
+.loading-content img {
+    width: 60px !important;
+    height: auto !important;
     margin-bottom: 30px;
     animation: logoFloat 2s ease-in-out infinite alternate;
 }
@@ -135,9 +142,7 @@ body {
     font-size: 12px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    overflow: hidden;
+    transition: all 0.3s ease;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -146,21 +151,10 @@ body {
     text-shadow: none;
 }
 
-.nav-link::before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateY(-100%);
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.nav-link:hover::before {
-    transform: translateY(0);
-}
-
 .nav-link:hover {
-    transform: translateY(100%);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
 .logo {
@@ -296,6 +290,8 @@ body {
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 0;
     font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .primary-btn {
@@ -322,6 +318,7 @@ body {
     background: #000000;
     transition: left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: -1;
+    pointer-events: none;
 }
 
 .primary-btn:hover .btn-bg {

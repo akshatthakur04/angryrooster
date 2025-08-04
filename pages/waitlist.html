@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Waitlist | Angry Rooster</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/waitlist.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <img src="../logo.svg" alt="Angry Rooster">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="nav-center">
+                <a href="../index.html" class="logo-link">
+                    <img src="../logo.svg" alt="Angry Rooster" class="logo">
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="performance.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="waitlist-main">
+        <div class="waitlist-container">
+            <!-- Hero Section -->
+            <section class="waitlist-hero">
+                <h1 class="waitlist-title">JOIN THE MOVEMENT</h1>
+                <p class="waitlist-subtitle">Be the first to experience performance redefined. Enter the waitlist for exclusive early access to our complete collection.</p>
+            </section>
+
+            <!-- Waitlist Form -->
+            <section class="waitlist-form-section">
+                <div class="waitlist-card">
+                    <div class="waitlist-header">
+                        <h2>Early Access Signup</h2>
+                        <p>Join thousands of athletes waiting to elevate their training.</p>
+                    </div>
+
+                    <form class="waitlist-form" id="waitlistForm">
+                        <div class="input-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="password">Create Password</label>
+                            <input type="password" id="password" name="password" required minlength="8">
+                            <small class="input-hint">Minimum 8 characters</small>
+                        </div>
+
+                        <button type="submit" class="waitlist-submit-btn" id="submitBtn">
+                            <span class="btn-text">JOIN WAITLIST</span>
+                            <div class="btn-loader" style="display: none;">
+                                <div class="loader-dot"></div>
+                                <div class="loader-dot"></div>
+                                <div class="loader-dot"></div>
+                            </div>
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div class="success-message" id="successMessage" style="display: none;">
+                        <div class="success-icon">✓</div>
+                        <h3>Welcome to the Movement</h3>
+                        <p>You're now on the waitlist. We'll notify you the moment our collection drops.</p>
+                        <a href="index.html" class="back-home-btn">Back to Home</a>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div class="error-message" id="errorMessage" style="display: none;">
+                        <div class="error-icon">⚠</div>
+                        <p id="errorText">Something went wrong. Please try again.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="waitlist-features">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Early Access</h3>
+                        <p>Shop before everyone else</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <h3>Exclusive Pricing</h3>
+                        <p>Waitlist members get 15% off</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📦</div>
+                        <h3>Limited Drops</h3>
+                        <p>Access to limited edition pieces</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NAVIGATE</h4>
+                    <ul>
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="performance.html" class="footer-link">Performance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>SOCIAL</h4>
+                    <ul>
+                        <li><a href="#" class="footer-link">Instagram</a></li>
+                        <li><a href="#" class="footer-link">YouTube</a></li>
+                        <li><a href="#" class="footer-link">TikTok</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="#" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link">Size Guide</a></li>
+                        <li><a href="#" class="footer-link">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Angry Rooster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.local.js"></script>
+    <script src="../js/waitlist.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -164,14 +164,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (user) {
             // User is logged in
             authContainer.style.display = 'none';
-            dashboardContainer.style.display = 'block';
+            dashboardContainer.style.display = 'grid';
             userEmailSpan.textContent = user.email;
 
             // Generate avatar
             generateAvatar(user.email);
             
-            // Add visible class for fade-in animation
-            setTimeout(() => dashboardContainer.classList.add('visible'), 50);
+            // Add visible class for fade-in animation with stagger effect
+            setTimeout(() => {
+                dashboardContainer.classList.add('visible');
+                
+                // Stagger animation for dashboard cards
+                const cards = dashboardContainer.querySelectorAll('.dashboard-card');
+                cards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 200 * (index + 1));
+                });
+
+                // Animate stat values counting up
+                setTimeout(() => {
+                    animateStats();
+                    initializeQuoteRotation();
+                }, 800);
+            }, 50);
 
         } else {
             // User is logged out
@@ -180,6 +200,81 @@ document.addEventListener('DOMContentLoaded', () => {
             dashboardContainer.classList.remove('visible');
             userEmailSpan.textContent = '';
         }
+    }
+
+    // Animate statistics counting up
+    function animateStats() {
+        const statValues = document.querySelectorAll('.stat-value');
+        statValues.forEach((stat, index) => {
+            const finalValue = stat.textContent;
+            if (finalValue.includes('%')) {
+                // Skip percentage values
+                return;
+            }
+            
+            if (!isNaN(parseInt(finalValue))) {
+                const target = parseInt(finalValue);
+                let current = 0;
+                const increment = target / 30; // 30 frames
+                
+                function updateCount() {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target;
+                    } else {
+                        stat.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCount);
+                    }
+                }
+                
+                setTimeout(() => {
+                    stat.textContent = '0';
+                    updateCount();
+                }, index * 200);
+            }
+        });
+    }
+
+    // Rotate motivational quotes
+    function initializeQuoteRotation() {
+        const quotes = [
+            { quote: "Excellence isn't a skill, it's an attitude", author: "— The Rooster Mindset" },
+            { quote: "Discipline before daylight. Power before praise.", author: "— Angry Rooster Creed" },
+            { quote: "The only bad workout is the one that didn't happen", author: "— Champions Daily" },
+            { quote: "Your strongest muscle and worst enemy is your mind", author: "— Mental Warfare" },
+            { quote: "Pain is weakness leaving the body", author: "— Forge Philosophy" }
+        ];
+
+        const quoteElement = document.querySelector('.motivation-quote');
+        const authorElement = document.querySelector('.motivation-author');
+        
+        if (!quoteElement || !authorElement) return;
+
+        let currentIndex = 0;
+
+        function rotateQuote() {
+            currentIndex = (currentIndex + 1) % quotes.length;
+            
+            // Fade out
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = quotes[currentIndex].quote;
+                authorElement.textContent = quotes[currentIndex].author;
+                
+                // Fade in
+                quoteElement.style.transition = 'opacity 0.5s ease';
+                authorElement.style.transition = 'opacity 0.5s ease';
+                quoteElement.style.opacity = '1';
+                authorElement.style.opacity = '1';
+            }, 250);
+        }
+
+        // Start rotation after 5 seconds, then every 8 seconds
+        setTimeout(() => {
+            setInterval(rotateQuote, 8000);
+        }, 5000);
     }
 
     // --- DASHBOARD ENHANCEMENT FUNCTIONS ---
