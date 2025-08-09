@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock The Drop | Angry Rooster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <style>
+        /* Ultra-Premium Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Background Video */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.3) brightness(0.25) saturate(0.8);
+            z-index: -2;
+            transform: scale(1.05);
+        }
+
+        /* Premium Background Overlay */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                linear-gradient(135deg, 
+                    rgba(0, 0, 0, 0.92) 0%, 
+                    rgba(0, 0, 0, 0.85) 50%, 
+                    rgba(0, 0, 0, 0.95) 100%
+                );
+            z-index: -1;
+        }
+
+        /* Main Container */
+        .unlock-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 60px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Logo */
+        .unlock-logo {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: logoEnter 2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+
+        .unlock-logo img {
+            height: 50px;
+            width: auto;
+            filter: invert(1) brightness(1.8) contrast(1.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .unlock-logo:hover img {
+            transform: scale(1.02);
+            filter: invert(1) brightness(2) contrast(1.2);
+        }
+
+        @keyframes logoEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Title */
+        .unlock-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            line-height: 0.95;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: titleEnter 1.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+        }
+
+        @keyframes titleEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Subtitle */
+        .unlock-subtitle {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 80px;
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: subtitleEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+            line-height: 1.6;
+        }
+
+        @keyframes subtitleEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Password Input Container */
+        .password-container {
+            position: relative;
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: inputEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
+        }
+
+        @keyframes inputEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Password Input */
+        .password-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1px;
+            padding: 28px 32px;
+            font-size: 16px;
+            font-weight: 300;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            backdrop-filter: blur(40px) saturate(150%);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .password-input:focus {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* Submit Button */
+        .unlock-button {
+            background: rgba(255, 255, 255, 0.02);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 22px 48px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 1px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: buttonEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes buttonEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .unlock-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+            transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .unlock-button:hover::before {
+            left: 100%;
+        }
+
+        .unlock-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .unlock-button:active {
+            transform: translateY(0);
+            transition: transform 0.1s ease;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .error-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Shake Animation */
+        .shake {
+            animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0) scale(1.01); }
+            20%, 80% { transform: translate3d(2px, 0, 0) scale(1.01); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0) scale(1.01); }
+            40%, 60% { transform: translate3d(4px, 0, 0) scale(1.01); }
+        }
+
+        /* Success Animation */
+        .success {
+            animation: successPulse 0.6s ease-out;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 255, 255, 0.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid transparent;
+            border-top: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hint Text */
+        .unlock-hint {
+            font-size: 10px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: hintEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2.8s forwards;
+            max-width: 350px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        @keyframes hintEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            
+            .unlock-container {
+                padding: 30px 20px;
+                max-width: 100%;
+            }
+            
+            .unlock-logo {
+                margin-bottom: 60px;
+            }
+            
+            .unlock-logo img {
+                height: 40px;
+            }
+            
+            .unlock-title {
+                font-size: clamp(2rem, 10vw, 3.5rem);
+                margin-bottom: 20px;
+                letter-spacing: 4px;
+            }
+            
+            .unlock-subtitle {
+                font-size: 10px;
+                letter-spacing: 3px;
+                margin-bottom: 60px;
+            }
+            
+            .password-container {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .password-input {
+                padding: 24px 20px;
+                font-size: 14px;
+                letter-spacing: 8px;
+            }
+            
+            .unlock-button {
+                padding: 20px 40px;
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+            
+            .unlock-hint {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* High-DPI Display Optimization */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .unlock-logo img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Dark mode compatibility */
+        @media (prefers-color-scheme: dark) {
+            .password-input {
+                background: rgba(255, 255, 255, 0.03);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video class="background-video" autoplay loop muted playsinline>
+        <source src="background-video.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Background Overlay -->
+    <div class="background-overlay"></div>
+
+
+
+    <!-- Main Unlock Container -->
+    <div class="unlock-container">
+        <!-- Logo -->
+        <div class="unlock-logo">
+            <img src="logo.svg" alt="Angry Rooster">
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="unlock-title">Unlock The Drop</h1>
+
+        <!-- Subtitle -->
+        <p class="unlock-subtitle">Exclusive Access • Members Only</p>
+
+        <!-- Password Input -->
+        <div class="password-container">
+            <input 
+                type="password" 
+                class="password-input" 
+                id="passwordInput" 
+                placeholder="Enter Access Code"
+                maxlength="20"
+                autocomplete="off"
+                spellcheck="false"
+            >
+            <div class="error-message" id="errorMessage">
+                Access Denied. Try Again.
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="unlock-button" id="unlockButton" type="button">
+            <span id="buttonText">Enter The Drop</span>
+        </button>
+
+        <!-- Hint Text -->
+        <p class="unlock-hint">
+            Reserved for the relentless
+        </p>
+    </div>
+
+    <script>
+        // Configuration
+        const CORRECT_PASSWORD = "ROOSTER2025"; // Change this to your desired password
+        const REDIRECT_URL = "main.html"; // Where to redirect on successful entry
+
+        // DOM Elements
+        const passwordInput = document.getElementById('passwordInput');
+        const unlockButton = document.getElementById('unlockButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const buttonText = document.getElementById('buttonText');
+        const unlockContainer = document.querySelector('.unlock-container');
+
+
+
+        // Password validation function
+        function validatePassword() {
+            const enteredPassword = passwordInput.value.trim().toUpperCase();
+            
+            if (enteredPassword === '') {
+                showError();
+                return;
+            }
+
+            // Show loading state
+            showLoading();
+
+            // Simulate processing delay for dramatic effect
+            setTimeout(() => {
+                if (enteredPassword === CORRECT_PASSWORD) {
+                    showSuccess();
+                    // Redirect after success animation
+                    setTimeout(() => {
+                        window.location.href = REDIRECT_URL;
+                    }, 1500);
+                } else {
+                    showError();
+                }
+            }, 800);
+        }
+
+        // Show loading state
+        function showLoading() {
+            unlockButton.classList.add('loading');
+            unlockButton.style.pointerEvents = 'none';
+            buttonText.style.opacity = '0';
+            passwordInput.disabled = true;
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            unlockButton.classList.remove('loading');
+            unlockButton.style.pointerEvents = 'auto';
+            buttonText.style.opacity = '1';
+            passwordInput.disabled = false;
+        }
+
+        // Show success state
+        function showSuccess() {
+            hideLoading();
+            passwordInput.classList.add('success');
+            unlockButton.classList.add('success');
+            buttonText.textContent = 'ACCESS GRANTED';
+            
+            // Add success visual effects
+            unlockContainer.style.animation = 'successPulse 1s ease-out';
+            
+            // Clear any existing error
+            errorMessage.classList.remove('show');
+        }
+
+        // Show error state
+        function showError() {
+            hideLoading();
+            
+            // Add shake animation
+            passwordInput.classList.add('shake');
+            unlockButton.classList.add('shake');
+            
+            // Show error message
+            errorMessage.classList.add('show');
+            
+            // Clear password
+            passwordInput.value = '';
+            
+            // Remove shake animation after it completes
+            setTimeout(() => {
+                passwordInput.classList.remove('shake');
+                unlockButton.classList.remove('shake');
+            }, 600);
+
+            // Hide error message after delay
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 3000);
+
+            // Focus back on input
+            passwordInput.focus();
+        }
+
+        // Event Listeners
+        unlockButton.addEventListener('click', validatePassword);
+
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                validatePassword();
+            }
+        });
+
+        // Auto-focus on input when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                passwordInput.focus();
+            }, 2500); // Wait for animations to complete
+        });
+
+        // Input formatting - convert to uppercase as user types
+        passwordInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        // Clear error when user starts typing again
+        passwordInput.addEventListener('input', () => {
+            if (errorMessage.classList.contains('show')) {
+                errorMessage.classList.remove('show');
+            }
+        });
+
+        // Prevent context menu and selection for security
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        document.addEventListener('selectstart', (e) => e.preventDefault());
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Easter egg - konami code or special sequence
+        let konamiSequence = [];
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiSequence.push(e.code);
+            konamiSequence = konamiSequence.slice(-8);
+            
+            if (konamiSequence.join(',') === konamiCode.join(',')) {
+                // Secret access
+                passwordInput.value = CORRECT_PASSWORD;
+                validatePassword();
+            }
+        });
+
+        // Add subtle hover effects to enhance interactivity
+        passwordInput.addEventListener('mouseenter', () => {
+            if (!passwordInput.disabled) {
+                passwordInput.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+            }
+        });
+
+        passwordInput.addEventListener('mouseleave', () => {
+            if (!passwordInput.disabled && document.activeElement !== passwordInput) {
+                passwordInput.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            }
+        });
+
+
+    </script>
+</body>
+</html>
