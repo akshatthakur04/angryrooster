@@ -762,6 +762,22 @@
                 background: rgba(255, 255, 255, 0.03);
             }
         }
+
+        /* Mobile fit adjustments: allow scroll and tighten vertical rhythm */
+        @media (max-width: 600px) {
+            body { overflow-y: auto; height: auto; min-height: 100svh; }
+            .unlock-container { height: auto; min-height: 100svh; padding: 20px 14px 24px; }
+            .unlock-logo { margin-bottom: 12px; }
+            .unlock-title { font-size: clamp(1.9rem, 9vw, 2.6rem); margin-bottom: 16px; letter-spacing: 3px; }
+            .unlock-subtitle { margin-bottom: 14px; }
+            .countdown-card { margin: 10px auto 18px; }
+            .notify-card { margin: 0 auto 16px; }
+            .notify-status { margin-top: 6px; }
+            .password-container { margin-top: 16px; margin-bottom: 18px; }
+            .password-input { padding: 18px 16px; letter-spacing: 6px; font-size: 14px; }
+            .unlock-button { padding: 16px 28px; margin-bottom: 12px; }
+            .unlock-hint { margin-top: 10px; }
+        }
     </style>
 </head>
 <body>
