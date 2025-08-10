@@ -921,16 +921,19 @@ body {
     
     .hero {
         height: 80vh;
+        padding-top: 60px; /* ensure content clears navbar */
     }
     
     .hero-content {
         padding: 0 20px;
         max-width: 100%;
     }
+    .hero-subtitle { margin-bottom: 12px; }
+    .hero-description { margin-bottom: 30px; font-size: 14px; }
     
     .hero-buttons {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
     .hero-button { width: 100%; max-width: 420px; text-align: center; padding: 16px 20px; }
     
@@ -940,9 +943,7 @@ body {
         margin-bottom: 80px;
     }
     
-    .brand-story {
-        padding: 60px 40px;
-    }
+    .brand-story { padding: 60px 24px; }
     
     .story-content {
         max-width: 100%;
@@ -985,10 +986,7 @@ body {
         border-radius: 30px;
     }
     
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-    }
+    .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     
     body {
         cursor: auto;
@@ -998,14 +996,12 @@ body {
 }
 
 @media (max-width: 480px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
+    .container { padding: 0 16px; }
+    .hero { height: 78vh; }
+    .footer-content { grid-template-columns: 1fr; }
     
-    .hero-buttons {
-        flex-direction: column;
-    }
-    .logo { height: 50px; }
+    .hero-buttons { flex-direction: column; }
+    .logo { height: 48px; }
 }
 
 /* High-end Performance Optimizations */
