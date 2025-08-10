@@ -36,9 +36,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.3) brightness(0.25) saturate(0.8);
+            filter: grayscale(100%) contrast(1.2) brightness(0.3) saturate(0.8);
             z-index: -2;
             transform: scale(1.05);
+            opacity: 0.85;
         }
 
         /* Premium Background Overlay */
@@ -73,19 +74,28 @@
             max-width: 600px;
             margin: 0 auto;
         }
+        .unlock-container::before {
+            content: '';
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);
+            z-index: -1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
 
         /* Logo */
         .unlock-logo {
-            margin-bottom: 80px;
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(-20px);
             animation: logoEnter 2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
         }
 
         .unlock-logo img {
-            height: 50px;
+            height: 42px;
             width: auto;
-            filter: invert(1) brightness(1.8) contrast(1.1);
+            filter: invert(1) brightness(2.2) contrast(1.3);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -104,12 +114,12 @@
         /* Main Title */
         .unlock-title {
             font-family: 'Bebas Neue', cursive;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
             font-weight: 400;
-            line-height: 0.95;
+            line-height: 1;
             margin-bottom: 24px;
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 4px;
             background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -117,6 +127,7 @@
             opacity: 0;
             transform: translateY(30px);
             animation: titleEnter 1.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+            white-space: nowrap;
         }
 
         @keyframes titleEnter {
@@ -128,16 +139,16 @@
 
         /* Subtitle */
         .unlock-subtitle {
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 80px;
-            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 24px;
+            color: rgba(255, 255, 255, 0.65);
             opacity: 0;
             transform: translateY(20px);
             animation: subtitleEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         @keyframes subtitleEnter {
@@ -152,10 +163,15 @@
             position: relative;
             max-width: 400px;
             width: 100%;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
+            margin-top: 40px;
             opacity: 0;
             transform: translateY(20px);
             animation: inputEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
+        }
+        .password-container.locked {
+            opacity: 0.6;
+            filter: grayscale(20%);
         }
 
         @keyframes inputEnter {
@@ -221,7 +237,7 @@
             position: relative;
             overflow: hidden;
             font-family: 'Inter', sans-serif;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
             animation: buttonEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
@@ -259,8 +275,13 @@
             transform: translateY(-1px);
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.3),
+                0 0 0 2px rgba(255, 215, 0, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+        .unlock-button:hover::before {
+            left: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
         }
 
         .unlock-button:active {
@@ -348,6 +369,314 @@
             max-width: 350px;
             line-height: 1.6;
             font-style: italic;
+            margin-top: 16px;
+        }
+
+        /* Countdown - compact design */
+        .countdown-card {
+            width: 100%;
+            max-width: 420px;
+            margin: 16px auto 32px;
+            padding: 12px 0 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardIn 900ms cubic-bezier(0.16,1,0.3,1) 1.6s forwards;
+            position: relative;
+        }
+        /* Subtle background for readability */
+        .countdown-card::before {
+            content: '';
+            position: absolute;
+            inset: -8% -5%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 40%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            border-radius: 16px;
+        }
+        @keyframes sweep { 0% { left: -40%; } 100% { left: 100%; } }
+        @keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
+
+        .countdown-title {
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .countdown-meta {
+            margin-top: 6px;
+            font-size: 8px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+        }
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin: 6px 0;
+            padding: 0 12px;
+        }
+        .time-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 6px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.08);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.3);
+            min-width: 60px;
+            flex: 1;
+        }
+        .time-value {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            line-height: 1;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            font-weight: 400;
+        }
+        .time-value.tick { animation: pop 300ms cubic-bezier(0.16,1,0.3,1); }
+        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+        .time-label {
+            margin-top: 4px;
+            font-size: 7px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+        }
+        .countdown.released .time-value { color: rgba(255,255,255,0.85); }
+        .countdown.released .time-label { color: rgba(255,255,255,0.6); }
+
+        /* Email capture - compact */
+        .notify-heading {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            margin: 4px 0 8px;
+            position: relative;
+        }
+        .notify-heading::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+        .notify-sub {
+            font-size: 10px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .notify-card {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto 22px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+        }
+        .notify-input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 400;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .notify-input::placeholder { 
+            color: rgba(255,255,255,0.5); 
+            font-weight: 300;
+        }
+        .notify-input:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+        .notify-btn {
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+        .notify-btn:hover { 
+            background: rgba(255,255,255,0.12); 
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+        }
+        .notify-btn[disabled] { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .notify-btn.confirmed { 
+            background: rgba(255,255,255,0.15); 
+            border-color: rgba(255,255,255,0.45);
+        }
+        .notify-status { 
+            font-size: 9px; 
+            font-weight: 500;
+            color: rgba(255,255,255,0.7); 
+            margin-top: 8px; 
+            min-height: 14px; 
+            text-align: center; 
+            line-height: 1.3;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .notify-status.success {
+            color: rgba(34, 197, 94, 0.9);
+            font-weight: 600;
+            opacity: 1;
+            transform: translateY(0);
+            text-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+        }
+        .notify-status.error {
+            color: rgba(248, 113, 113, 0.9);
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .notify-status.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notify-btn .icon { width: 14px; height: 14px; }
+
+        @media (max-width: 768px) {
+            .countdown-card { padding: 10px 0 8px; margin: 20px auto 40px; }
+            .countdown { gap: 6px; padding: 0 8px; }
+            .time-segment { padding: 6px 4px; min-width: 50px; }
+            .time-value { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+            .time-label { font-size: 6px; margin-top: 2px; }
+            .password-container { margin-top: 50px; margin-bottom: 36px; }
+            .unlock-hint { margin-top: 20px; }
+            .notify-card { 
+                grid-template-columns: 1fr; 
+                gap: 10px; 
+                max-width: 360px;
+                margin-bottom: 28px;
+            }
+            .notify-btn { 
+                width: 100%; 
+                justify-content: center; 
+                padding: 12px 16px;
+            }
+            .notify-input { padding: 12px 14px; font-size: 12px; }
+        }
+
+
+        /* Sleek Social Links */
+        .social-links {
+            position: fixed;
+            left: 24px;
+            bottom: calc(24px + env(safe-area-inset-bottom));
+            z-index: 20;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px) saturate(140%);
+            border-radius: 999px;
+        }
+        .social-btn {
+            display: inline-flex;
+            width: 28px;
+            height: 28px;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 50%;
+            transition: transform 0.25s ease, color 0.25s ease, background 0.25s ease;
+        }
+        .social-btn:hover {
+            transform: translateY(-1px) scale(1.05);
+            color: #ffffff;
+            background: rgba(255,255,255,0.08);
+        }
+        .social-btn svg { width: 16px; height: 16px; }
+
+        @media (max-width: 768px) {
+            .social-links { left: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); padding: 8px 12px; gap: 8px; }
+            .social-btn { width: 26px; height: 26px; }
+            .social-btn svg { width: 14px; height: 14px; }
+        }
+
+        /* Success Overlay Animation */
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 15;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .success-overlay.active { opacity: 1; }
+        .success-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.03) 18%, transparent 58%);
+            transform: scale(0.25);
+            opacity: 0;
+            animation: ringExpand 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        .success-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+              linear-gradient(0deg, transparent 46%, rgba(255,255,255,0.04) 50%, transparent 54%),
+              radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 58%);
+            opacity: 0;
+            animation: sheen 1.2s ease-out forwards;
+        }
+        @keyframes ringExpand {
+            0% { transform: scale(0.25); opacity: 0; }
+            45% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        @keyframes sheen {
+            0% { opacity: 0; }
+            30% { opacity: 1; }
+            100% { opacity: 0; }
         }
 
         @keyframes hintEnter {
@@ -444,6 +773,9 @@
     <!-- Background Overlay -->
     <div class="background-overlay"></div>
 
+    <!-- Success FX Overlay -->
+    <div class="success-overlay" id="successOverlay"></div>
+
 
 
     <!-- Main Unlock Container -->
@@ -459,13 +791,46 @@
         <!-- Subtitle -->
         <p class="unlock-subtitle">Exclusive Access • Members Only</p>
 
+        <!-- Countdown Card -->
+        <div class="countdown-card" aria-live="polite" aria-atomic="true">
+            <div class="countdown-title">Public passcode release</div>
+            <div class="countdown" id="countdown">
+                <div class="time-segment">
+                    <div class="time-value" id="days">--</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-segment">
+                    <div class="time-value" id="hours">--</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-segment">
+                    <div class="time-value" id="minutes">--</div>
+                    <div class="time-label">Mins</div>
+                </div>
+                <div class="time-segment">
+                    <div class="time-value" id="seconds">--</div>
+                    <div class="time-label">Secs</div>
+                </div>
+            </div>
+            <div class="countdown-meta">15 Aug, 7PM GMT</div>
+        </div>
+
+        <!-- Notify form -->
+        <div class="notify-heading">Be first to get the code</div>
+        <div class="notify-sub">Drop your email and we’ll send you the pass the second it goes live.</div>
+        <div class="notify-card" role="form" aria-label="Get passcode first">
+            <input id="notifyEmail" class="notify-input" type="email" placeholder="Join the list. Beat the drop." autocomplete="email" inputmode="email"/>
+            <button id="notifyBtn" class="notify-btn" type="button"><span class="icon" aria-hidden="true"></span><span class="btn-text">Notify Me</span></button>
+        </div>
+        <div id="notifyStatus" class="notify-status" aria-live="polite"></div>
+
         <!-- Password Input -->
         <div class="password-container">
             <input 
                 type="password" 
                 class="password-input" 
                 id="passwordInput" 
-                placeholder="Enter Access Code"
+                placeholder="🔒 Enter Access Code"
                 maxlength="20"
                 autocomplete="off"
                 spellcheck="false"
@@ -486,10 +851,21 @@
         </p>
     </div>
 
+    <!-- Socials -->
+    <div class="social-links" aria-label="Follow us">
+        <a class="social-btn" href="https://www.instagram.com/angryroostergymwear/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+        </a>
+        <a class="social-btn" href="https://www.tiktok.com/@angryroostergymwear" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.5 3c.5 2.6 2.2 4.5 5 4.8v3.1c-1.7.2-3.3-.4-5-1.6v4.9c0 6.1-6.7 7.9-9.3 4.2-2.2-3-1-7.6 3.9-8.3 1-.1 1.7 0 2.7.4v3.1c-2.8-.9-4.8.4-4.4 2.5.4 2.1 4.9 2.6 4.9-2.4V3h1.2z"/></svg>
+        </a>
+    </div>
+
     <script>
         // Configuration
         const CORRECT_PASSWORD = "ROOSTER2025"; // Change this to your desired password
         const REDIRECT_URL = "main.html"; // Where to redirect on successful entry
+        const COUNTDOWN_TARGET = new Date('2025-08-15T19:00:00Z'); // 15 Aug, 7pm GMT
 
         // DOM Elements
         const passwordInput = document.getElementById('passwordInput');
@@ -499,6 +875,54 @@
         const unlockContainer = document.querySelector('.unlock-container');
 
 
+
+        // Countdown
+        const countdownElement = document.getElementById('countdown');
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = COUNTDOWN_TARGET - now;
+
+            if (distance < 0) {
+                if (countdownElement) {
+                    countdownElement.innerHTML = '<div class="time-value" style="grid-column: 1 / -1;">RELEASED</div>';
+                    countdownElement.classList.add('released');
+                }
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const updateField = (element, value) => {
+                if (element && element.textContent !== value) {
+                    element.textContent = value;
+                    element.classList.add('tick');
+                }
+            };
+
+            updateField(daysElement, String(days).padStart(2, '0'));
+            updateField(hoursElement, String(hours).padStart(2, '0'));
+            updateField(minutesElement, String(minutes).padStart(2, '0'));
+            updateField(secondsElement, String(seconds).padStart(2, '0'));
+
+            setTimeout(() => {
+                daysElement?.classList.remove('tick');
+                hoursElement?.classList.remove('tick');
+                minutesElement?.classList.remove('tick');
+                secondsElement?.classList.remove('tick');
+            }, 300);
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
 
         // Password validation function
         function validatePassword() {
@@ -551,6 +975,14 @@
             
             // Add success visual effects
             unlockContainer.style.animation = 'successPulse 1s ease-out';
+            // Activate overlay burst + subtle camera move
+            const overlay = document.getElementById('successOverlay');
+            if (overlay) overlay.classList.add('active');
+            document.querySelector('.background-video')?.animate([
+                { transform: 'scale(1.03)' },
+                { transform: 'scale(1.05)' },
+                { transform: 'scale(1.03)' }
+            ], { duration: 900, easing: 'cubic-bezier(0.16,1,0.3,1)' });
             
             // Clear any existing error
             errorMessage.classList.remove('show');
@@ -646,7 +1078,79 @@
             }
         });
 
+        // Email notify with Supabase
+        const notifyEmail = document.getElementById('notifyEmail');
+        const notifyBtn = document.getElementById('notifyBtn');
+        const notifyStatus = document.getElementById('notifyStatus');
+
+        function validEmail(email) {
+            return /[^@\s]+@[^@\s]+\.[^@\s]+/.test(email);
+        }
+
+        async function submitNotify() {
+            const email = (notifyEmail?.value || '').trim();
+            if (!validEmail(email)) {
+                notifyStatus.textContent = 'Please enter a valid email.';
+                return;
+            }
+            notifyBtn.disabled = true;
+            notifyStatus.textContent = 'Saving...';
+            try {
+                // Simple: expect global supabaseClient from js/supabase-config.local.js
+                if (typeof supabaseClient === 'undefined') {
+                    notifyStatus.textContent = 'Setup missing: add js/supabase-config.local.js with your URL and anon key.';
+                    return;
+                }
+                const { error } = await supabaseClient
+                    .from('unlock_notifications')
+                    .insert({ email }); // keep minimal; defaults handle other columns
+                if (error) {
+                    // If unique violation, treat as success
+                    if (error.code === '23505') {
+                        notifyStatus.textContent = "You're already in. ✓";
+                    } else {
+                        throw error;
+                    }
+                } else {
+                    notifyStatus.textContent = "You're in. We'll email you as soon as it drops. ✓";
+                    notifyStatus.classList.add('success');
+                }
+                notifyEmail.value = '';
+                const btnText = document.querySelector('#notifyBtn .btn-text');
+                const btnIcon = document.querySelector('#notifyBtn .icon');
+                if (btnText && btnIcon) {
+                    btnText.textContent = "You're In";
+                    btnIcon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+                }
+                notifyBtn.classList.add('confirmed');
+            } catch (e) {
+                notifyStatus.textContent = 'Could not save your email. Please try again.';
+                notifyStatus.classList.add('error', 'show');
+                console.error(e);
+            } finally {
+                notifyBtn.disabled = false;
+            }
+        }
+        if (notifyBtn) notifyBtn.addEventListener('click', submitNotify);
+        if (notifyEmail) notifyEmail.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); submitNotify(); } });
+
 
     </script>
+    <!-- Supabase (keys loaded from your local config) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      // Minimal inline fallback: if js/supabase-config.local.js is missing,
+      // you can quickly set your creds here once for testing.
+      // Prefer keeping keys in js/supabase-config.local.js in production.
+      if (typeof supabaseClient === 'undefined') {
+        try {
+          // Try to read globals that may be defined earlier; otherwise leave undefined
+          if (typeof SUPABASE_URL !== 'undefined' && typeof SUPABASE_ANON_KEY !== 'undefined') {
+            window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          }
+        } catch (_) {}
+      }
+    </script>
+    <script src="js/supabase-config.local.js"></script>
 </body>
 </html>

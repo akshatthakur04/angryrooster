@@ -11,6 +11,9 @@
     --revolutionary-gray-900: #111827;
     --curve-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --curve-dramatic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Align accent choice with hoodie */
+    --revolutionary-accent: #111111;
+    --revolutionary-accent-light: rgba(0, 0, 0, 0.08);
 }
 
 /* Enhanced Loading Screen */
@@ -960,11 +963,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.wishlist-revolutionary.active {
-    background: #fee2e2;
-    border-color: #ef4444;
-    color: #dc2626;
-}
+.wishlist-revolutionary.active { background: rgba(0,0,0,0.06); border-color: #111; color: #111; }
 
 /* Revolutionary Product Showcase - T-Shirt Features */
 .product-showcase-revolutionary {

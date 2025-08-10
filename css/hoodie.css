@@ -14,8 +14,9 @@
     --revolutionary-gray-700: #404040;
     --revolutionary-gray-800: #262626;
     --revolutionary-gray-900: #171717;
-    --revolutionary-accent: #dc2626;
-    --revolutionary-accent-light: rgba(220, 38, 38, 0.1);
+    /* Neutralize red accents to align with brand preference */
+    --revolutionary-accent: #111111;
+    --revolutionary-accent-light: rgba(0, 0, 0, 0.08);
     
     /* Cinematic Shadows */
     --shadow-cinematic: 0 25px 50px -12px rgba(0, 0, 0, 0.8);

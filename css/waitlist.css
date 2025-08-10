@@ -4,7 +4,8 @@
 :root {
     --waitlist-primary: #000000;
     --waitlist-secondary: #ffffff;
-    --waitlist-accent: #dc2626;
+    /* Neutralize red accent to match brand */
+    --waitlist-accent: #111111;
     --waitlist-gray-light: #f8f9fa;
     --waitlist-gray-medium: #6b7280;
     --waitlist-gray-dark: #374151;
@@ -279,8 +280,8 @@
 
 /* Error Message */
 .error-message {
-    background: #fee2e2;
-    border: 1px solid #fca5a5;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     padding: 16px;
     margin-top: 16px;
@@ -288,13 +289,13 @@
 }
 
 .error-icon {
-    color: #dc2626;
+    color: #111111;
     font-size: 1.25rem;
     margin-bottom: 8px;
 }
 
 .error-message p {
-    color: #dc2626;
+    color: #111111;
     margin: 0;
     font-size: 0.875rem;
     font-weight: 500;
