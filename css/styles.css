@@ -931,11 +931,8 @@ body {
     .hero-subtitle { margin-bottom: 12px; }
     .hero-description { margin-bottom: 30px; font-size: 14px; }
     
-    .hero-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .hero-button { width: 100%; max-width: 420px; text-align: center; padding: 16px 20px; }
+    .hero-buttons { flex-direction: column; gap: 12px; align-items: center; justify-content: center; }
+    .hero-button { width: min(420px, 92%); text-align: center; padding: 16px 20px; margin: 0 auto; }
     
     .brand-split {
         grid-template-columns: 1fr;
