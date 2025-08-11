@@ -1041,8 +1041,9 @@
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 32px;
+    justify-content: center; /* center contents since price is removed */
+    gap: 14px; /* give breathing room between icon and text */
+    padding: 0 24px;
     height: 100%;
     color: var(--revolutionary-white);
 }
@@ -1053,6 +1054,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .btn-price {
