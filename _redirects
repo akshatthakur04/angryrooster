@@ -1,1 +1,2 @@
-/unlock   /unlock.html   200
+/unlock         /unlock.html    200
+/unlock.html    /unlock         301

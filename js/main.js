@@ -1,17 +1,26 @@
 // main.js - for site-wide scripts
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Loading Screen
+    // Loading Screen — hide as soon as DOM is ready, with a window.load backup and a hard timeout.
     const loadingScreen = document.getElementById('loadingScreen');
     if (loadingScreen) {
-        window.addEventListener('load', () => {
+        let hasHidden = false;
+        const hideLoading = () => {
+            if (hasHidden) return;
+            hasHidden = true;
+            // fade out then remove from flow
+            loadingScreen.style.opacity = '0';
             setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 500); // Reduced delay for faster page load feel
-        });
+                loadingScreen.style.display = 'none';
+            }, 500);
+        };
+
+        // Prefer hiding right after DOM is interactive so mobile users don't wait for all assets
+        setTimeout(hideLoading, 400);
+        // Also hide when the full page load event fires (acts as a secondary trigger)
+        window.addEventListener('load', hideLoading);
+        // Absolute fallback in case of slow/failed assets
+        setTimeout(hideLoading, 4000);
     }
 
 

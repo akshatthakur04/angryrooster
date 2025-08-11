@@ -109,9 +109,9 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding: 15px 0;
 }
 /* Safe area support on iOS (mobile only applied below) */
@@ -147,10 +147,7 @@ body {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.navbar.scrolled .nav-link {
-    color: #000000;
-    text-shadow: none;
-}
+.navbar.scrolled .nav-link { color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.4); }
 
 .nav-link:hover {
     font-size: 14px;
@@ -165,9 +162,7 @@ body {
     filter: invert(1) brightness(2);
 }
 
-.navbar.scrolled .logo {
-    filter: invert(0) brightness(1);
-}
+.navbar.scrolled .logo { filter: invert(1) brightness(1.8); }
 
 .logo-link {
     display: flex;
@@ -804,6 +799,105 @@ body {
     font-weight: 300;
 }
 
+/* Minimal, premium footer (dark, centered icon tiles) */
+.footer-min {
+    position: relative;
+    background: #0b0b0b;
+    color: #e6e6e6;
+    padding: 72px 0 64px;
+    min-height: 260px; /* allow room for visible wordmark */
+    overflow: hidden;
+}
+.footer-min::before {
+    content: 'ANGRY ROOSTER';
+    position: absolute;
+    left: 50%;
+    bottom: -40%; /* CHANGE: back to bottom positioning, but less negative */
+    transform: translateX(-50%); /* CHANGE: only center horizontally */
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(3rem, 18vw, 20rem);
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.12);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    line-height: 1;
+        background: linear-gradient(
+          90deg,
+          rgba(255,255,255,0.02) 0%,
+          rgba(255,255,255,0.15) 50%,
+          rgba(255,255,255,0.02) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shimmer 8s ease-in-out infinite;
+      }
+      
+      @keyframes shimmer {
+        0%, 100% { background-position: -200% 0; }
+        50% { background-position: 200% 0; }
+}
+  
+/* keep rooster icon overlay removed */
+.footer-min::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, 
+      rgba(11,11,11,0.9) 0%, 
+      rgba(11,11,11,0.6) 30%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    display: block;
+  }
+
+.footer-min .icons {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 0;
+}
+.footer-min .tile {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(8px) saturate(140%);
+    color: #dcdcdc;
+    text-decoration: none;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+}
+.footer-min .tile:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.22);
+    color: #ffffff;
+}
+.footer-min .tile svg { width: 18px; height: 18px; }
+.footer-min .copy { display:none; }
+
+@media (max-width: 768px) {
+  .footer-min { padding: 56px 0; min-height: 200px; }
+  .footer-min::before { font-size: 58vw; bottom: -26%; letter-spacing: 3px; }
+  .footer-min .icons { gap: 12px; }
+  .footer-min .tile { width: 42px; height: 42px; border-radius: 10px; }
+}
+
 /* Scroll Animations */
 .animate-on-scroll {
     opacity: 0;
@@ -1019,9 +1113,10 @@ body {
         background: #0a0a0a;
     }
     
-    .navbar {
-        background: transparent;
-    }
+    .navbar { background: transparent; }
+    .navbar.scrolled { background: rgba(0,0,0,0.85); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .navbar.scrolled .logo { filter: invert(1) brightness(1.8); }
+    .navbar.scrolled .nav-link { color:#fff; }
     
     .nav-link {
         color: #ffffff;
