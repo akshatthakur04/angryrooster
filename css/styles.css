@@ -39,7 +39,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #ffffff;
+    background: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,26 +47,75 @@ body {
     transition: opacity 0.5s ease;
 }
 
-.loading-logo {
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap');
+
+/* Luxury intro styles */
+.intro-welcome {
+  text-align: center;
 }
 
-.loading-logo img {
-    width: 60px !important;
-    height: auto !important;
-    margin-bottom: 30px;
-    animation: logoFloat 2s ease-in-out infinite alternate;
+.intro-text {
+  font-family: 'Bebas Neue', serif;
+  font-weight: 500;
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 7px;
+  letter-spacing: .5px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: introFade 3s ease-in-out infinite;
+}
+
+/* Fade in & out keyframes */
+@keyframes introFade {
+  0% { opacity: 0; transform: translateY(6px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(6px); }
+}
+.intro-logo img{
+  width: min(50px, 22vw);
+  height: auto;
+  filter: invert(1) brightness(2);
+  opacity: 0; transform: translateY(10px) scale(0.98);
+  animation: introFade 1800ms cubic-bezier(0.16,1,0.3,1) 200ms forwards,
+             introGlow 2400ms ease-in-out 200ms forwards;
+}
+
+@keyframes introFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes introGlow {
+  0% { filter: invert(1) brightness(1.2) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  100% { filter: invert(1) brightness(2) drop-shadow(0 10px 30px rgba(255,255,255,0.15)); }
+}
+
+/* Subtle vignette + sheen for premium feel */
+#introScreen::before{
+  content:''; position:absolute; inset:0;
+  background: radial-gradient(120% 120% at 50% 10%, rgba(255,255,255,0.08), transparent 60%),
+              radial-gradient(120% 120% at 50% 90%, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
+  pointer-events:none;
 }
 
 .loading-content img {
-    width: 60px !important;
+    width: 36px !important;
     height: auto !important;
-    margin-bottom: 30px;
-    animation: logoFloat 2s ease-in-out infinite alternate;
+    margin-bottom: 20px;
+    animation: logoFloat 2.2s ease-in-out infinite alternate;
+}
+
+/* Standardize alternative loader markup used on some pages */
+.loading-logo img {
+    width: 36px !important;
+    height: auto !important;
+    margin-bottom: 20px;
+    animation: logoFloat 2.2s ease-in-out infinite alternate;
 }
 
 .loading-bar {
-    width: 200px;
+    width: 120px;
     height: 2px;
     background: #f0f0f0;
     position: relative;
@@ -93,6 +142,32 @@ body {
     0% { left: -100%; }
     100% { left: 100%; }
 }
+
+/* Smaller loader on mobile */
+@media (max-width: 768px) {
+  .loading-content img { width: 28px !important; margin-bottom: 16px; }
+  .loading-logo img { width: 28px !important; margin-bottom: 16px; }
+  .loading-bar { width: 100px; }
+}
+
+/* Subtle site version (cheeky, bottom-right) */
+body::after {
+  content: 'v1.19';
+  position: fixed;
+  right: 10px;
+  bottom: 8px;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6); /* 60% opacity */
+  opacity: 0.25;
+  transition: opacity 0.25s ease;
+}
+body:hover::after { opacity: 0.4; }
 
 
 
@@ -1014,7 +1089,9 @@ body {
     body.mobile-menu-open .mobile-menu-panel { transform: translateX(0); }
     
     .hero {
-        height: 80vh;
+        /* Fill the full safe viewport height on mobile so the white section below isn't visible on first load */
+        height: 100svh;
+        min-height: 100vh; /* fallback */
         padding-top: 60px; /* ensure content clears navbar */
     }
     
@@ -1105,6 +1182,79 @@ body {
     .brand-identity {
         transform: translate3d(0, 0, 0);
     }
+}
+
+/* Site-wide Beta Modal (classy, minimal) */
+.site-beta-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.site-beta-modal.active { display: flex; }
+.site-beta-modal .beta-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+}
+.site-beta-modal .beta-card {
+    position: relative; z-index: 1;
+    width: min(92vw, 520px);
+    border-radius: 16px;
+    padding: 28px 24px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+}
+.beta-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    letter-spacing: 2px;
+    margin: 0 0 8px 0;
+}
+.beta-description {
+    font-family: 'Inter', sans-serif;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+.beta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.beta-btn {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+.beta-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+.beta-btn.primary { background: #fff; color: #000; border-color: #fff; }
+.beta-close {
+    position: absolute; top: 10px; right: 12px;
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; border-radius: 10px;
+    cursor: pointer; transition: all .2s ease;
+}
+.beta-close:hover { background: rgba(255,255,255,0.16); }
+
+@media (max-width: 480px) {
+  .site-beta-modal .beta-card { padding: 24px 18px; border-radius: 14px; }
 }
 
 /* Dark mode support */

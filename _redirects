@@ -1,2 +1,16 @@
-/unlock         /unlock.html    200
-/unlock.html    /unlock         301
+/ /unlock 302
+
+# Redirects for .html file extensions
+/unlock /unlock.html 200
+/main /main.html 200
+/ /index.html 200
+/account /pages/account.html 200
+/about /pages/about.html 200
+/performance /pages/performance.html 200
+/hoodie /pages/hoodie.html 200
+/tshirt /pages/tshirt.html 200
+/waitlist /pages/waitlist.html 200
+/help-shape /pages/help-shape.html 200
+
+# Redirect from unlock.html to /unlock
+/unlock.html /unlock 301

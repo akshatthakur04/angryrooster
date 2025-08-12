@@ -140,6 +140,19 @@
     text-decoration: none;
 }
 
+/* Forgot password link */
+.forgot-password { text-align: right; margin: -10px 0 20px; }
+.forgot-password-link {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+.forgot-password-link:hover { color: #000; }
+
 /* --- Redesigned Dashboard Styles --- */
 :root {
     --accent-color: #000000;
@@ -710,11 +723,12 @@
     }
     
     .dashboard-card {
-        padding: 30px 25px;
+        padding: 24px 20px;
     }
     
     .profile-header {
-        padding: 40px 30px;
+        padding: 28px 20px;
+        border-radius: 16px;
     }
     
     .profile-left {
@@ -723,12 +737,24 @@
     }
     
     .avatar-container {
-        margin: 0 0 20px 0;
+        width: 64px;
+        height: 64px;
+        margin: 0 0 12px 0;
     }
     
     .auth-title, .profile-email {
-        font-size: 2rem;
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
     }
+
+    .profile-email {
+        letter-spacing: 0.5px;
+        line-height: 1.1;
+        overflow-wrap: anywhere; /* handle long emails on small screens */
+    }
+
+    .profile-tagline { font-size: 0.9rem; }
+    .section-title { font-size: clamp(1.4rem, 6vw, 1.6rem); }
+    .timeline-empty { padding: 28px 18px; }
     
     .auth-subtitle {
         font-size: 0.9rem;
@@ -747,3 +773,38 @@
         font-size: 2rem;
     }
 } 
+
+@media (max-width: 480px) {
+    .profile-header { padding: 24px 16px; }
+    .profile-header::before { width: 200px; height: 200px; }
+    .dashboard-card { padding: 20px 16px; }
+}
+/* —— Center the account page on mobile —— */
+@media (max-width: 768px) {
+    /* Center grid items */
+    .dashboard-container {
+      grid-template-columns: 1fr !important;
+      justify-items: center;        /* key */
+      align-items: start;
+      padding: 0 16px !important;
+    }
+  
+    /* Cap width of each card/section and center them */
+    .profile-header,
+    .dashboard-card,
+    .order-history,
+    .workout-stats,
+    .motivation-section,
+    .logout-section {
+      width: min(100%, 560px);      /* reduce the huge left/right gutters */
+      margin: 0 auto;               /* center */
+    }
+  
+    /* Tidy the profile header for centered layout */
+    .profile-header { text-align: center; }
+    .profile-left { flex-direction: column; align-items: center; gap: 10px; }
+    .section-title { text-align: left; width: 100%; } /* keep section titles aligned inside centered card */
+  
+    /* Optional: make the empty timeline card centered inside its parent */
+    .timeline-empty { margin: 0 auto; }
+  }

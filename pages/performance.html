@@ -156,16 +156,7 @@
     <!-- JavaScript for interactions -->
     <script src="../js/main.js"></script>
     <script>
-        // Loading Screen
-        window.addEventListener('load', () => {
-            const loadingScreen = document.getElementById('loadingScreen');
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
+        // Remove page-specific loader timing; global script handles consistent pacing
 
 
 

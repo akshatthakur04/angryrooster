@@ -9,17 +9,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="logo.svg">
 </head>
 <body>
+    <!--
+      - .... .. ... ....... .-- . -... ... .. - . ....... .-- .- ... ....... -- .- -.. . ....... -... -.-- ....... .- -.- ... .... .- - ....... - .... .- -.- ..- .- .-
+    -->
     <!-- Loading Animation -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">
-            <img src="logo.svg" alt="FORGE">
-            <div class="loading-bar"></div>
+    <div class="loading-screen" id="introScreen" aria-hidden="true">
+        <div class="intro-welcome">
+            <!-- Welcome Text -->
+            <div class="intro-text">Welcome to</div>
+            <!-- Logo -->
+            <div class="intro-logo">
+                <img src="logo.svg" alt="Angry Rooster" />
+            </div>
         </div>
     </div>
 
+    <!-- Standard loader (used after the first visit) -->
+    <div class="loading-screen" id="loadingScreen" style="display:none">
+        <div class="loading-content">
+            <img src="logo.svg" alt="Angry Rooster">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
 
 
     <!-- Navigation -->
@@ -54,7 +69,7 @@
             <div class="hero-text-wrapper">
                 <span class="hero-subtitle animate-in">INTRODUCING</span>
                 <h1 class="hero-title animate-in">POWER PERFORMANCE<br>COLLECTION</h1>
-                <p class="hero-description animate-in">Coming Soon.</p>
+                <p class="hero-description animate-in">This Autumn.</p>
                 <div class="hero-buttons animate-in">
                     <a href="pages/waitlist.html" class="hero-button primary-btn">
                         <span>JOIN THE WAITLIST</span>
@@ -68,35 +83,61 @@
         </div>
     </section>
 
-    <!-- Brand Identity -->
-    <section class="brand-identity">
-        <div class="container">
-            <!-- Section Header -->
+    <head>
+        <!-- load the font properly -->
+        <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet" />
+        <style>
+          .splash-text{
+            font-family: 'Rock Salt', cursive;
+            font-size: 2.5rem;
+            display:inline-block;
+            position:relative;
+            color:#000;
+            letter-spacing:2px;
+          }
+          /* optional splatter */
+          .splash-text::before{
+            content:'';
+            background:url('splatter.png') no-repeat center;
+            background-size:contain;
+            position:absolute;
+            top:-20px; left:-30px; right:-30px; bottom:-10px;
+            opacity:.4; z-index:-1;
+          }
+        </style>
+      </head>
+      <body>
+        <!-- Brand Identity -->
+        <section class="brand-identity">
+          <div class="container">
             <div class="brand-header animate-on-scroll">
-                <h2 class="brand-section-title">OUR IDENTITY</h2>
-                <p class="brand-section-subtitle">BUILT FOR THE RELENTLESS</p>
+              <h2 class="brand-section-title">OUR IDENTITY</h2>
+              <p class="brand-section-subtitle">BUILT FOR THE RELENTLESS</p>
             </div>
-
-            <!-- Split Layout -->
+      
             <div class="brand-split animate-on-scroll">
-                <div class="brand-image">
-                    <div class="editorial-image">
-                        <img src="heropage.png" alt="Angry Rooster Editorial" class="hero-editorial" loading="lazy" decoding="async">
-                    </div>
+              <div class="brand-image">
+                <div class="editorial-image">
+                  <img src="heropage.png" alt="Angry Rooster Editorial" class="hero-editorial" loading="lazy" decoding="async">
                 </div>
-                <div class="brand-story">
-                    <div class="story-content">
-                        <p class="story-text">
-                            Angry Rooster is a mindset. A refusal to be average.<br><br>
-                            We create performance-wear for those who train before sunrise, chase discomfort, and never settle.<br><br>
-                            We build what you need.
-                        </p>
-                        <div class="signature">
-                            <span>– Angry Rooster Team</span>
-                        </div>
-                    </div>
+              </div>
+              <div class="brand-story">
+                <div class="story-content">
+                  <p class="story-text">
+                    Angry Rooster is for the different.<br><br>
+                    We create performance-wear for you, and make what you want.<br><br>
+                    We build what you need.<br><br>
+                    <span class="splash-text">For the Bold.</span>
+                  </p>
+                  <div class="signature">
+                    <span>– Angry Rooster Team</span>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+        </section>
+      </body>
 
             <!-- Pull Quote Section -->
             <div class="brand-quote animate-on-scroll">
@@ -155,17 +196,68 @@
       <div class="copy">&copy; ANGRY ROOSTER </div>
     </footer>
 
+    <!-- Classy Beta Notice Modal -->
+    <div id="betaModal" class="site-beta-modal" aria-modal="true" role="dialog" aria-labelledby="betaTitle" aria-describedby="betaDescription">
+      <div class="beta-backdrop" data-close="beta"></div>
+      <div class="beta-card">
+        <button class="beta-close" type="button" aria-label="Close" data-close="beta">×</button>
+        <h3 id="betaTitle" class="beta-title">Public preview</h3>
+        <p id="betaDescription" class="beta-description">
+          This site is in active development, and may be buggy. If you spot anything off, we’d love your help—send feedback to
+          <a href="mailto:angryroostergymwear@gmail.com" style="color:#fff;text-decoration:underline;">angryroostergymwear@gmail.com</a>.
+        </p>
+        <div class="beta-actions">
+          <button class="beta-btn primary" type="button" id="betaContinue">Continue</button>
+          <a class="beta-btn" href="mailto:angryroostergymwear@gmail.com?subject=Feedback%20on%20Angry%20Rooster%20beta" id="betaEmail">Send feedback</a>
+        </div>
+      </div>
+    </div>
+
     <!-- JavaScript for interactions -->
     <script>
-        // Loading Screen
+        // Luxury intro: logo reveal (calm, premium)
         window.addEventListener('load', () => {
-            const loadingScreen = document.getElementById('loadingScreen');
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
+            const intro = document.getElementById('introScreen');
+            const loader = document.getElementById('loadingScreen');
+            const KEY = 'ar_welcome_seen_v1';
+            const hasSeen = localStorage.getItem(KEY) === '1';
+
+            if (!intro || !loader) return;
+
+            document.body.style.overflow = 'hidden';
+
+            if (hasSeen) {
+                // Skip welcome; use standard loader quickly
+                intro.style.display = 'none';
+                loader.style.display = 'flex';
                 setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 1500);
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 500);
+                }, 1200);
+                return;
+            }
+
+            // First visit: show the welcome, then mark as seen and continue
+            const EXIT_DELAY = 2600; // slower welcome pacing
+            setTimeout(() => {
+                intro.style.opacity = '0';
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                    loader.style.display = 'flex';
+                    localStorage.setItem(KEY, '1');
+                    // fade out standard loader immediately after
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                            document.body.style.overflow = '';
+                        }, 500);
+                    }, 900);
+                }, 700);
+            }, EXIT_DELAY);
         });
 
 
@@ -246,6 +338,26 @@
                 btn.style.transform = 'translate(0, 0)';
             });
         });
+
+        // Beta modal (show once per browser for 7 days)
+        (function initBetaModal(){
+          try {
+            const MODAL_KEY = 'ar_beta_seen_at_v1';
+            const sevenDays = 7 * 24 * 60 * 60 * 1000;
+            const lastSeen = localStorage.getItem(MODAL_KEY);
+            const shouldShow = !lastSeen || (Date.now() - Number(lastSeen)) > sevenDays;
+            const modal = document.getElementById('betaModal');
+            if (!modal) return;
+            const open = () => modal.classList.add('active');
+            const close = () => {
+              modal.classList.remove('active');
+              localStorage.setItem(MODAL_KEY, String(Date.now()));
+            };
+            if (shouldShow) open();
+            modal.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'beta') close(); });
+            document.getElementById('betaContinue')?.addEventListener('click', close);
+          } catch (_) { /* no-op if storage blocked */ }
+        })();
 
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

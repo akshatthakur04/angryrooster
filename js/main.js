@@ -1,26 +1,32 @@
 // main.js - for site-wide scripts
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Loading Screen — hide as soon as DOM is ready, with a window.load backup and a hard timeout.
+    // Standardize loader across pages. If the page has a dedicated intro (#introScreen),
+    // skip this logic and let the page-specific script handle it.
     const loadingScreen = document.getElementById('loadingScreen');
-    if (loadingScreen) {
+    const introScreen = document.getElementById('introScreen');
+    if (loadingScreen && !introScreen) {
         let hasHidden = false;
         const hideLoading = () => {
             if (hasHidden) return;
             hasHidden = true;
-            // fade out then remove from flow
+            // Smooth fade and cleanup
             loadingScreen.style.opacity = '0';
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
-            }, 500);
+                document.body.style.overflow = '';
+            }, 800);
         };
 
-        // Prefer hiding right after DOM is interactive so mobile users don't wait for all assets
-        setTimeout(hideLoading, 400);
-        // Also hide when the full page load event fires (acts as a secondary trigger)
-        window.addEventListener('load', hideLoading);
+        // Prevent scroll while loader is visible
+        document.body.style.overflow = 'hidden';
+
+        // Luxury pacing: keep loader visible briefly, then fade
+        setTimeout(hideLoading, 1200);
+        // Also hide when the full page load event fires (secondary trigger)
+        window.addEventListener('load', hideLoading, { once: true });
         // Absolute fallback in case of slow/failed assets
-        setTimeout(hideLoading, 4000);
+        setTimeout(hideLoading, 5000);
     }
 
 

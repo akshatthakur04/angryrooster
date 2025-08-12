@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editModalOverlay = document.getElementById('edit-modal-overlay');
     const closeModalBtn = document.getElementById('close-modal-btn');
     const updatePasswordForm = document.getElementById('update-password-form');
+    const forgotPasswordBtn = document.getElementById('forgot-password-btn');
     const modalMessageContainer = document.getElementById('modal-message-container');
 
     // --- HELPER FUNCTIONS ---
@@ -40,6 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
             signupWrapper.style.display = 'none';
             loginWrapper.style.display = 'block';
         }
+    }
+
+    function openPasswordResetModal() {
+        if (!editModalOverlay) return;
+        editModalOverlay.classList.add('visible');
+        editModalOverlay.style.display = 'flex';
+        // Focus the password input for accessibility
+        setTimeout(() => {
+            const newPasswordInput = document.getElementById('new-password');
+            if (newPasswordInput) newPasswordInput.focus();
+        }, 50);
     }
 
     // --- UI EVENT LISTENERS ---
@@ -77,6 +89,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- SUPABASE AUTH LOGIC ---
+
+    // Forgot password flow (magic link)
+    if (forgotPasswordBtn) {
+        forgotPasswordBtn.addEventListener('click', async () => {
+            const email = document.getElementById('login-email').value.trim();
+            if (!email) {
+                showMessage('Enter your email first to reset your password.', true);
+                return;
+            }
+            try {
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: window.location.origin + '/pages/account.html',
+                });
+                if (error) throw error;
+                showMessage('Password reset email sent. Check your inbox.');
+            } catch (err) {
+                showMessage(err.message || 'Failed to send reset email.', true);
+            }
+        });
+    }
+
+    // If user arrives from Supabase recovery email, auto-open the password reset modal
+    try {
+        const hashParams = new URLSearchParams(window.location.hash.slice(1));
+        if (hashParams.get('type') === 'recovery' || hashParams.has('access_token')) {
+            openPasswordResetModal();
+        }
+    } catch (_) { /* no-op */ }
+
+    // Also listen for Supabase auth state changes to capture PASSWORD_RECOVERY events
+    try {
+        supabaseClient.auth.onAuthStateChange((event) => {
+            if (event === 'PASSWORD_RECOVERY') {
+                openPasswordResetModal();
+            }
+        });
+    } catch (_) { /* no-op */ }
 
     // Sign up a new user
     signupForm.addEventListener('submit', async (e) => {
