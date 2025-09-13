@@ -43,10 +43,13 @@
     <!-- Cinematic Hero Section -->
     <section class="product-hero">
         <div class="hero-background">
-            <img src="../front tshirt.png" alt="Power Drape™ Tee Background" class="hero-background-image" fetchpriority="high">
+            <link rel="preload" as="image" href="../front-tshirt.avif" imagesrcset="../front-tshirt.avif" fetchpriority="high">
+            <picture>
+              <source srcset="../front-tshirt.avif" type="image/avif">
+              <source srcset="../front-tshirt.webp" type="image/webp">
+              <img src="../front-tshirt.png" alt="Power Drape Tee – front" class="hero-background-image" fetchpriority="high" decoding="async">
+            </picture>
             <div class="hero-overlay"></div>
-            <div class="image-grain"></div>
-            <div class="image-vignette"></div>
         </div>
         
         <div class="hero-content">
@@ -64,16 +67,16 @@
             <div class="gallery-controls">
                 <div class="gallery-label">VIEW</div>
                 <div class="gallery-thumbnails">
-                    <button class="gallery-thumb active" data-image="../front tshirt.png" data-alt="Power Drape™ Tee Front">
-                        <img src="../front tshirt.png" alt="Front View" loading="lazy" decoding="async">
+                    <button class="gallery-thumb active" data-image="../front-tshirt.png" data-alt="Power Drape™ Tee Front" aria-current="true">
+                        <img src="../front-tshirt.png" alt="Tee – front view" loading="lazy" decoding="async">
                         <span class="thumb-label">FRONT</span>
                     </button>
                     <button class="gallery-thumb" data-image="../Background.jpg" data-alt="Power Drape™ Tee Back">
-                        <img src="../Background.jpg" alt="Back View" loading="lazy" decoding="async">
+                        <img src="../Background.jpg" alt="Tee – back view" loading="lazy" decoding="async">
                         <span class="thumb-label">BACK</span>
                     </button>
                 </div>
-                <button class="zoom-btn" onclick="openImageModal()">
+                <button class="zoom-btn" onclick="openImageModal()" aria-label="Open image modal">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
@@ -122,9 +125,9 @@
                 <div class="quantity-selection-clean">
                     <div class="quantity-label-clean">QTY</div>
                     <div class="quantity-controls-clean">
-                        <button type="button" class="qty-btn-clean" onclick="adjustQuantity(-1)">−</button>
+                        <button type="button" class="qty-btn-clean" onclick="adjustQuantity(-1)" aria-label="Decrease quantity">−</button>
                         <span class="qty-display-clean" id="quantity">1</span>
-                        <button type="button" class="qty-btn-clean" onclick="adjustQuantity(1)">+</button>
+                        <button type="button" class="qty-btn-clean" onclick="adjustQuantity(1)" aria-label="Increase quantity">+</button>
                     </div>
                 </div>
 
@@ -339,10 +342,10 @@
     </main>
 
     <!-- Image Modal -->
-    <div id="imageModal" class="image-modal">
+    <div id="imageModal" class="image-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-backdrop" onclick="closeImageModal()"></div>
         <div class="modal-content">
-            <button class="modal-close" onclick="closeImageModal()">
+            <button class="modal-close" onclick="closeImageModal()" aria-label="Close image modal">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -351,7 +354,7 @@
             <div class="modal-gallery">
                 <img id="modalImage" src="" alt="" class="modal-image">
                 <div class="modal-nav">
-                    <button class="modal-nav-btn prev" onclick="switchModalImage(-1)">
+                    <button class="modal-nav-btn prev" onclick="switchModalImage(-1)" aria-label="Previous image">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="15,18 9,12 15,6"></polyline>
                         </svg>
@@ -360,7 +363,7 @@
                         <span class="modal-indicator active" data-index="0"></span>
                         <span class="modal-indicator" data-index="1"></span>
                     </div>
-                    <button class="modal-nav-btn next" onclick="switchModalImage(1)">
+                    <button class="modal-nav-btn next" onclick="switchModalImage(1)" aria-label="Next image">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="9,18 15,12 9,6"></polyline>
                         </svg>

@@ -1,3 +1,29 @@
+/* bridge visuals for moisture/stretch */
+.moisture-visual{display:flex;gap:6px;align-items:flex-end}
+.droplet{width:6px;height:10px;border-radius:3px;background:var(--revolutionary-gray-300);animation:drop 1.6s ease-in-out infinite}
+.droplet:nth-child(2){animation-delay:.2s}.droplet:nth-child(3){animation-delay:.4s}
+@keyframes drop{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-6px);opacity:1}}
+
+.stretch-visual{display:flex;gap:6px;align-items:center}
+.stretch-indicator{width:10px;height:2px;background:var(--revolutionary-gray-400);animation:stretch 1.4s ease-in-out infinite}
+.stretch-indicator:nth-child(odd){animation-delay:.2s}
+@keyframes stretch{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.6)}}
+
+/* Loading screen baseline */
+.loading-screen{position:fixed;inset:0;background:#000;display:grid;place-items:center;z-index:9999;transition:opacity .3s}
+.loading-screen.hidden{opacity:0;pointer-events:none}
+.loading-bar{width:160px;height:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden;margin-top:16px}
+.loading-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:load 1.2s infinite}
+@keyframes load{0%{left:-100%}100%{left:100%}}
+
+/* Motion sensitivity */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .hero-background-image{animation:none}
+}
+
+/* focus ring */
+:focus-visible{outline:2px solid #000;outline-offset:2px}
 /* Revolutionary Product Page - Breaking Boundaries */
 
 /* CSS Variables - Cinematic Palette */
@@ -38,7 +64,8 @@
 
 /* Cinematic Hero Section */
 .product-hero {
-    height: 100vh;
+    min-height: 100dvh;
+    height: auto;
     position: relative;
     overflow: hidden;
     background: var(--revolutionary-black);
@@ -136,7 +163,7 @@
     color: var(--revolutionary-white);
     line-height: 0.9;
     margin-bottom: 48px;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
     text-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
 }
 
@@ -219,21 +246,7 @@
     margin-bottom: 16px;
 }
 
-.gallery-thumb {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    background: transparent;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s var(--curve-smooth);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px 4px 4px 4px;
-}
+/* merged duplicate .gallery-thumb rules (keep a single definition) */
 
 .gallery-thumb img {
     width: 28px;
@@ -1159,7 +1172,7 @@
         padding: 0 4vw;
     }
     
-    .hero-price-floating {
+    .hero-purchase-floating {
         right: 4vw;
     }
     
@@ -1519,7 +1532,8 @@
     margin: 0 auto;
 }
 
-.feature-grid-revolutionary {
+.feature-grid-revolutionary,
+.features-grid /* bridge */ {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;

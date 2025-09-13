@@ -53,7 +53,7 @@ function initializeImageGallery() {
 function initializeHeroGallery() {
     let currentImageIndex = 0;
     const images = [
-        { src: '../front tshirt.png', alt: 'Power Drape™ Tee Front' },
+        { src: '../front-tshirt.png', alt: 'Power Drape™ Tee Front' },
         { src: '../Background.jpg', alt: 'Power Drape™ Tee Back' }
     ];
 
@@ -61,8 +61,9 @@ function initializeHeroGallery() {
     document.querySelectorAll('.gallery-thumb').forEach((thumb, index) => {
         thumb.addEventListener('click', () => {
             // Update active state
-            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.gallery-thumb').forEach(t => { t.classList.remove('active'); t.removeAttribute('aria-current'); });
             thumb.classList.add('active');
+            thumb.setAttribute('aria-current','true');
             
             // Switch background image
             const heroImage = document.querySelector('.hero-background-image');
@@ -84,6 +85,7 @@ function initializeHeroGallery() {
     window.openImageModal = function() {
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
+        const previouslyFocused = document.activeElement;
         
         if (modal && modalImage) {
             modalImage.src = images[currentImageIndex].src;
@@ -94,6 +96,20 @@ function initializeHeroGallery() {
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Focus trap
+            const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (first) first.focus();
+            function handleTab(e){
+              if (e.key !== 'Tab') return;
+              if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+              else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+            }
+            modal.addEventListener('keydown', handleTab);
+            modal.dataset.prevFocus = previouslyFocused ? previouslyFocused.id || 'focus-sentinel' : '';
+            modal.dataset.trap = 'true';
         }
     };
 
@@ -102,6 +118,12 @@ function initializeHeroGallery() {
         if (modal) {
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            // restore focus
+            const id = modal.dataset.prevFocus;
+            if (id && id !== 'focus-sentinel') {
+              const el = document.getElementById(id);
+              if (el) el.focus();
+            }
         }
     };
 
@@ -126,7 +148,9 @@ function initializeHeroGallery() {
                 
                 // Update hero gallery active state
                 document.querySelectorAll('.gallery-thumb').forEach((thumb, index) => {
-                    thumb.classList.toggle('active', index === currentImageIndex);
+                    const isActive = index === currentImageIndex;
+                    thumb.classList.toggle('active', isActive);
+                    if (isActive) thumb.setAttribute('aria-current','true'); else thumb.removeAttribute('aria-current');
                 });
             }, 150);
         }
@@ -236,7 +260,7 @@ function initializeCleanPurchase() {
                 size: selectedSize.value,
                 quantity: quantity,
                 price: 65,
-                image: '../front tshirt.png'
+                image: '../front-tshirt.png'
             });
 
             // Success state
@@ -354,7 +378,7 @@ function initializeAddToCart() {
                     product: 'Power Drape™ Training Tee',
                     size: selectedSize.value,
                     price: 65,
-                    image: '../front tshirt.png'
+                    image: '../front-tshirt.png'
                 });
                 
                 // Success feedback
