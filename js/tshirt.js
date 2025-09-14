@@ -53,7 +53,7 @@ function initializeImageGallery() {
 function initializeHeroGallery() {
     let currentImageIndex = 0;
     const images = [
-        { src: '../front-tshirt.png', alt: 'Power Drape™ Tee Front' },
+        { src: '../maintshirtpage.png', alt: 'Power Drape™ Tee Front' },
         { src: '../Background.jpg', alt: 'Power Drape™ Tee Back' }
     ];
 
