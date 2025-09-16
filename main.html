@@ -68,7 +68,7 @@
         <div class="hero-content">
             <div class="hero-text-wrapper">
                 <span class="hero-subtitle animate-in">INTRODUCING</span>
-                <h1 class="hero-title animate-in">POWER PERFORMANCE<br>COLLECTION</h1>
+                <h1 class="hero-title animate-in">PREMIUM GYMWEAR<br>COLLECTION</h1>
                 <p class="hero-description animate-in">This Autumn.</p>
                 <div class="hero-buttons animate-in">
                     <a href="pages/waitlist.html" class="hero-button primary-btn">
@@ -81,6 +81,85 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Product Preview - First Drop -->
+    <section class="product-preview" id="first-drop">
+      <div class="container">
+        <div class="product-preview-header animate-on-scroll">
+          <p class="eyebrow-text">FIRST DROP</p>
+          <h2 class="section-title">LIMITED FIRST EDITION LAUNCH</h2>
+          <p class="launch-timeline">Orders open November 2025</p>
+        </div>
+
+        <div class="product-grid animate-on-scroll">
+          <article class="product-card preview-switch" data-rotate="true">
+            <div class="product-image square">
+              <img class="layer current" src="tshirtSLback.png" alt="Essentials Tee 01 – back view (SL)" loading="lazy" decoding="async">
+              <img class="layer" src="tshirtlsback.png" alt="Essentials Tee 01 – back view (ls)" loading="lazy" decoding="async" aria-hidden="true">
+              <span class="badge">Pre-Order</span>
+              <div class="image-arrows" aria-label="Slide controls">
+                <button class="arrow prev" type="button" aria-label="Previous image" tabindex="0">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+                </button>
+                <button class="arrow next" type="button" aria-label="Next image" tabindex="0">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,6 15,12 9,18"/></svg>
+                </button>
+              </div>
+              <div class="image-toggle" role="tablist" aria-label="Switch tee view">
+                <button class="dot active" type="button" aria-label="View 1" aria-selected="true"></button>
+                <button class="dot" type="button" aria-label="View 2" aria-selected="false"></button>
+              </div>
+            </div>
+            <h3 class="product-name">ESSENTIALS TEE 01</h3>
+            <div class="product-meta">
+              <span class="price">£21</span>
+              <span class="status">Coming Soon</span>
+            </div>
+            <a class="card-link" href="pages/tshirt.html" aria-label="View Essentials Tee 01"></a>
+          </article>
+
+          <article class="product-card preview-switch">
+            <div class="product-image square">
+              <img class="layer current" src="hoodieback1.png" alt="Essentials Hoodie 01 – back view (1)" loading="lazy" decoding="async">
+              <img class="layer" src="hoodiebck.png" alt="Essentials Hoodie 01 – back view (2)" loading="lazy" decoding="async" aria-hidden="true">
+              <span class="badge">Pre-Order</span>
+              <div class="image-arrows" aria-label="Slide controls">
+                <button class="arrow prev" type="button" aria-label="Previous image" tabindex="0">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+                </button>
+                <button class="arrow next" type="button" aria-label="Next image" tabindex="0">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,6 15,12 9,18"/></svg>
+                </button>
+              </div>
+              <div class="image-toggle" role="tablist" aria-label="Switch hoodie view">
+                <button class="dot active" type="button" aria-label="View 1" aria-selected="true"></button>
+                <button class="dot" type="button" aria-label="View 2" aria-selected="false"></button>
+              </div>
+            </div>
+            <h3 class="product-name">ESSENTIALS HOODIE 01</h3>
+            <div class="product-meta">
+              <span class="price">£44</span>
+              <span class="status">Coming Soon</span>
+            </div>
+            <a class="card-link" href="pages/hoodie.html" aria-label="View Essentials Hoodie 01"></a>
+          </article>
+        </div>
+
+        <div class="exclusivity-notes animate-on-scroll" aria-label="Exclusivity messaging">
+          <span class="note-pill">Exclusive pricing for early supporters</span>
+          <span class="note-pill">Only 100 pieces per design</span>
+          <span class="note-pill">48-hour early access for waitlist members</span>
+        </div>
+
+        <div class="preview-cta animate-on-scroll">
+          <a href="pages/waitlist.html" class="hero-button primary-btn">
+            <span>JOIN THE WAITLIST</span>
+            <div class="btn-bg"></div>
+          </a>
+          <p class="cta-sub">Get notified when pre-orders open</p>
+        </div>
+      </div>
     </section>
 
     <head>
@@ -372,6 +451,35 @@
                 }
             });
         });
+    </script>
+    <script>
+      // Lightweight toggler for tee preview in First Drop section
+      (function(){
+        const cards = document.querySelectorAll('.product-card.preview-switch');
+        cards.forEach(card=>{
+          const imgs = card.querySelectorAll('.product-image .layer');
+          const dots = card.querySelectorAll('.image-toggle .dot');
+          const prev = card.querySelector('.image-arrows .prev');
+          const next = card.querySelector('.image-arrows .next');
+          if(imgs.length === 0 || dots.length === 0) return;
+          let current = 0; let timer;
+          function show(i){
+            imgs[current].classList.remove('current');
+            dots[current]?.classList.remove('active'); dots[current]?.setAttribute('aria-selected','false');
+            current = i;
+            imgs[current].classList.add('current');
+            dots[current]?.classList.add('active'); dots[current]?.setAttribute('aria-selected','true');
+          }
+          dots.forEach((d, i)=> d.addEventListener('click', ()=>{ show(i); reset(); }));
+          prev?.addEventListener('click', ()=>{ show((current-1+imgs.length)%imgs.length); reset(); });
+          next?.addEventListener('click', ()=>{ show((current+1)%imgs.length); reset(); });
+          function rotate(){ show((current+1)%imgs.length); }
+          function reset(){ clearInterval(timer); timer = setInterval(rotate, 4500); }
+          reset();
+          card.addEventListener('mouseenter', ()=> clearInterval(timer));
+          card.addEventListener('mouseleave', reset);
+        })
+      })();
     </script>
     <script src="js/main.js"></script>
 </body>
