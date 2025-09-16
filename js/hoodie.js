@@ -232,10 +232,10 @@ function initializeCleanPurchase() {
         try {
             // Simulate API call
             await simulateAddToCart({
-                product: 'Angry Rooster PowerKnit™ Hoodie',
+                product: 'ESSENTIALS HOODIE 02',
                 size: selectedSize.value,
                 quantity: quantity,
-                price: 89,
+                price: 44,
                 image: '../Front.png'
             });
 
@@ -351,10 +351,10 @@ function initializeAddToCart() {
             try {
                 // Simulate API call
                 await simulateAddToCart({
-                    product: 'PowerKnit™ Training Hoodie',
+                    product: 'ESSENTIALS HOODIE 02',
                     size: selectedSize.value,
-                    price: 89,
-                    image: '../Hoodie.png'
+                    price: 44,
+                    image: '../Front.png'
                 });
                 
                 // Success feedback

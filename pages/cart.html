@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag | Angry Rooster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="icon" type="image/svg+xml" href="../logo.svg">
+</head>
+<body class="cart-body">
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../main.html" class="nav-link">Home</a>
+                <a href="../pages/performance.html" class="nav-link">Products</a>
+            </div>
+            <div class="nav-center">
+                <a href="../main.html" class="logo-link"><img src="../logo.svg" alt="Angry Rooster" class="logo"></a>
+            </div>
+            <div class="nav-right">
+                <a href="../pages/account.html" class="nav-link">Account</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="cart-hero">
+        <h1 class="cart-title">SHOPPING BAG</h1>
+    </header>
+
+    <main class="cart-main">
+        <section class="cart-list" aria-label="Your selections">
+            <div class="cart-list-head">
+                <span>Your Selections</span>
+                <button class="print-btn" onclick="window.print()" aria-label="Print">Print</button>
+            </div>
+            <div id="cartItems" class="cart-items" aria-live="polite"></div>
+        </section>
+        <aside class="cart-summary" aria-label="Order summary">
+            <div class="summary-card">
+                <div class="summary-head">ORDER SUMMARY</div>
+                <div class="summary-row"><span>Subtotal</span><span id="subtotal">£0.00</span></div>
+                <div class="summary-row"><span>Shipping</span><span id="shippingText">Calculated at next step</span></div>
+                <div class="summary-row info"><span>(includes premium packaging)</span><span></span></div>
+                <div class="summary-row total"><span>Total</span><span id="total">£0.00</span></div>
+                <button id="checkoutBtn" class="checkout-btn" type="button">CHECKOUT</button>
+                <p class="summary-note">Your order will be processed upon dispatch. Pre-orders are secured at purchase with premium packaging included at no additional cost.</p>
+                <div class="trust-signals">
+                  <p>✓ 30-day returns guaranteed</p>
+                  <p>✓ Secure checkout</p>
+                  <p>✓ Quality guaranteed</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer-min" aria-label="Site footer">
+        <div class="icons">
+            <a class="tile" href="mailto:angryroostergymwear@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+            </a>
+            <a class="tile" href="https://www.instagram.com/angryroostergymwear/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </a>
+            <a class="tile" href="https://www.tiktok.com/@angryroostergymwear" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 3c.5 2.6 2.2 4.5 5 4.8v3.1c-1.7.2-3.3-.4-5-1.6v4.9c0 6.1-6.7 7.9-9.3 4.2-2.2-3-1-7.6 3.9-8.3 1-.1 1.7 0 2.7.4v3.1c-2.8-.9-4.8.4-4.4 2.5.4 2.1 4.9 2.6 4.9-2.4V3h1.2z"/></svg>
+            </a>
+        </div>
+        <div class="copy">&copy; ANGRY ROOSTER</div>
+    </footer>
+
+    <script src="../js/cart.js"></script>
+</body>
+</html>
+

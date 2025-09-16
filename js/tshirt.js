@@ -321,10 +321,10 @@ function initializeCleanPurchase() {
         try {
             // Simulate API call
             await simulateAddToCart({
-                product: 'Angry Rooster Power Drape™ Tee',
+                product: 'ESSENTIALS TEE 01',
                 size: selectedSize.value,
                 quantity: quantity,
-                price: 65,
+                price: 21,
                 image: '../front-tshirt.png'
             });
 
@@ -440,9 +440,9 @@ function initializeAddToCart() {
             try {
                 // Simulate API call
                 await simulateAddToCart({
-                    product: 'Power Drape™ Training Tee',
+                    product: 'ESSENTIALS TEE 01',
                     size: selectedSize.value,
-                    price: 65,
+                    price: 21,
                     image: '../front-tshirt.png'
                 });
                 
