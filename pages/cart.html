@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="icon" type="image/svg+xml" href="../logo.svg">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="cart-body">
     <nav class="navbar" id="navbar">
@@ -45,8 +46,15 @@
                 <div class="summary-row"><span>Subtotal</span><span id="subtotal">£0.00</span></div>
                 <div class="summary-row"><span>Shipping</span><span id="shippingText">Calculated at next step</span></div>
                 <div class="summary-row info"><span>(includes premium packaging)</span><span></span></div>
+                <div class="summary-row info"><span>Free shipping on orders over £75</span><span></span></div>
                 <div class="summary-row total"><span>Total</span><span id="total">£0.00</span></div>
-                <button id="checkoutBtn" class="checkout-btn" type="button">CHECKOUT</button>
+
+                <form id="payment-form">
+                    <div id="card-element" style="margin-top: 16px; margin-bottom: 16px; padding: 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;"></div>
+                    <button id="submit-button" class="checkout-btn" type="submit">Pay Now</button>
+                    <div id="payment-message" style="color: #ff6b6b; font-size: 12px; margin-top: 12px; text-align: center;"></div>
+                </form>
+
                 <p class="summary-note">Your order will be processed upon dispatch. Pre-orders are secured at purchase with premium packaging included at no additional cost.</p>
                 <div class="trust-signals">
                   <p>✓ 30-day returns guaranteed</p>
@@ -73,6 +81,7 @@
     </footer>
 
     <script src="../js/cart.js"></script>
+    <script src="../js/checkout.js"></script>
 </body>
 </html>
 
