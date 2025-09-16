@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAddToCart();
     initializeWishlist();
     initializeAccordion();
+    initializeHeroAlternator();
+    initializeSizeGuideModal();
+    initializeCareAccordion();
 });
 
 // Image Gallery Functionality
@@ -53,7 +56,7 @@ function initializeImageGallery() {
 function initializeHeroGallery() {
     let currentImageIndex = 0;
     const images = [
-        { src: '../maintshirtpage.png', alt: 'Power Drape™ Tee Front' },
+        { src: '../front-tshirt.png', alt: 'Power Drape™ Tee Front' },
         { src: '../Background.jpg', alt: 'Power Drape™ Tee Back' }
     ];
 
@@ -200,6 +203,68 @@ function initializeHeroGallery() {
 
     // Initialize clean purchase functionality
     initializeCleanPurchase();
+}
+
+// Premium alternating hero background
+function initializeHeroAlternator(){
+    const heroImage = document.querySelector('.hero-background-image');
+    if (!heroImage) return;
+    const sources = [
+        '../tshirtSLback.png',
+        '../tshirtlsback.png'
+    ];
+    let idx = 0;
+    setInterval(()=>{
+        idx = (idx + 1) % sources.length;
+        heroImage.classList.add('is-fading');
+        setTimeout(()=>{
+            heroImage.src = sources[idx];
+            heroImage.alt = idx === 0 ? 'Power Drape Tee – back view (SL)' : 'Power Drape Tee – back view (ls)';
+            heroImage.classList.remove('is-fading');
+        }, 600);
+    }, 5000);
+}
+
+// Size Guide modal interactions
+function initializeSizeGuideModal(){
+  const openBtn = document.getElementById('openSizeGuide');
+  const modal = document.getElementById('sizeGuideModal');
+  const closeBtn = document.getElementById('closeSizeGuide');
+  if(!openBtn || !modal) return;
+  const backdropDismissEls = modal.querySelectorAll('[data-dismiss-size-guide]');
+  function open(){
+    modal.classList.add('active');
+    document.body.style.overflow='hidden';
+    // focus trap basic
+    setTimeout(()=>closeBtn?.focus(),0);
+    function keyHandler(e){ if(e.key==='Escape'){ close(); } }
+    modal._escHandler = keyHandler; document.addEventListener('keydown', keyHandler);
+  }
+  function close(){
+    modal.classList.remove('active');
+    document.body.style.overflow='';
+    if(modal._escHandler){ document.removeEventListener('keydown', modal._escHandler); modal._escHandler=null; }
+    openBtn.focus();
+  }
+  openBtn.addEventListener('click', open);
+  closeBtn?.addEventListener('click', close);
+  backdropDismissEls.forEach(el=> el.addEventListener('click', close));
+}
+
+// Care & Maintenance accordion toggle
+function initializeCareAccordion(){
+  const toggle = document.getElementById('careToggle');
+  const panel = document.getElementById('carePanel');
+  if(!toggle || !panel) return;
+  function setOpen(isOpen){
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    if(isOpen){ panel.hidden = false; panel.style.display = 'block'; }
+    else { panel.hidden = true; panel.style.display = 'none'; }
+  }
+  toggle.addEventListener('click', ()=>{
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    setOpen(!isOpen);
+  });
 }
 
 // Clean Purchase Panel Functionality

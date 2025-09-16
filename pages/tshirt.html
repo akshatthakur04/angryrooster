@@ -43,9 +43,9 @@
     <!-- Cinematic Hero Section -->
     <section class="product-hero">
         <div class="hero-background">
-            <link rel="preload" as="image" href="../maintshirtpage.png" imagesrcset="../maintshirtpage.png" fetchpriority="high">
+            <link rel="preload" as="image" href="../tshirtSLback.png" imagesrcset="../tshirtSLback.png" fetchpriority="high">
             <picture>
-              <img src="../maintshirtpage.png" alt="Power Drape Tee – main" class="hero-background-image" fetchpriority="high" decoding="async">
+              <img src="../tshirtSLback.png" alt="Power Drape Tee – main" class="hero-background-image" fetchpriority="high" decoding="async">
             </picture>
             <div class="hero-overlay"></div>
         </div>
@@ -65,8 +65,8 @@
             <div class="gallery-controls">
                 <div class="gallery-label">VIEW</div>
                 <div class="gallery-thumbnails">
-                    <button class="gallery-thumb active" data-image="../maintshirtpage.png" data-alt="Power Drape™ Tee Front" aria-current="true">
-                        <img src="../maintshirtpage.png" alt="Tee – front view" loading="lazy" decoding="async">
+                    <button class="gallery-thumb active" data-image="../front-tshirt.png" data-alt="Power Drape™ Tee Front" aria-current="true">
+                        <img src="../front-tshirt.png" alt="Tee – front view" loading="lazy" decoding="async">
                         <span class="thumb-label">FRONT</span>
                     </button>
                     <button class="gallery-thumb" data-image="../Background.jpg" data-alt="Power Drape™ Tee Back">
@@ -89,19 +89,20 @@
         <!-- Enhanced Purchase Panel -->
         <div class="hero-purchase-floating">
             <div class="purchase-panel-clean">
-                <div class="product-title-clean">ANGRY ROOSTER TEE</div>
-                <div class="product-description-clean">Premium AeroWick® blend engineered for the gym and beyond</div>
+                <div class="product-title-clean">ESSENTIALS TEE 01</div>
+                <div class="product-description-clean">The foundation of relentless performance. Engineered for those who understand that excellence begins with the essentials. Our signature AeroWick blend moves with your ambition—from first rep to final conquest.</div>
                 
                 <div class="price-display-clean">
-                    <span class="price-current-clean">£19.99</span>
+                    <span class="price-current-clean">£21</span>
                     <div class="price-details-clean">
                         <span class="price-note-clean">Pre-order pricing</span>
                     </div>
+                    <div class="scarcity-indicator" aria-live="polite">
+                        <span class="scarcity-dot" aria-hidden="true"></span>
+                        <span class="scarcity-text">Limited Edition – Only 50 pieces available</span>
+                    </div>
                 </div>
 
-                <div class="product-features-clean">
-                    95% Cotton + Elastane • Oversized Fit • UK Designed
-                </div>
 
                 <div class="size-selection-clean">
                     <div class="size-label-clean">SIZE</div>
@@ -117,6 +118,9 @@
                         
                         <input type="radio" id="tee-size-xl" name="size" value="XL" class="size-input-clean">
                         <label for="tee-size-xl" class="size-option-clean">XL</label>
+                    </div>
+                    <div class="size-guide-inline">
+                        <button type="button" class="size-guide-btn-premium" id="openSizeGuide" aria-haspopup="dialog" aria-controls="sizeGuideModal"><span>SIZE GUIDE</span><span class="btn-arrow">→</span></button>
                     </div>
                 </div>
 
@@ -335,9 +339,127 @@
                         </div>
                     </div>
                 </div>
+                <!-- Care & Maintenance Accordion -->
+                <section class="care-section">
+                    <button class="care-toggle" id="careToggle" aria-expanded="false" aria-controls="carePanel">CARE INSTRUCTIONS</button>
+                    <div class="care-panel" id="carePanel" hidden>
+                        <ul class="care-list-grid" aria-label="Care & Maintenance">
+                            <li class="care-item">
+                                <span class="care-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9c1-.5 3-2 5-2 3 0 4 2 6 2s4-2 7-2"/></svg>
+                                </span>
+                                <div class="care-text"><span class="care-title">Machine wash cold</span><span class="care-sub">30°C max</span></div>
+                            </li>
+                            <li class="care-item">
+                                <span class="care-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="17" cy="12" r="2"/></svg>
+                                </span>
+                                <div class="care-text"><span class="care-title">Wash with similar colors</span><span class="care-sub">Turn inside-out</span></div>
+                            </li>
+                            <li class="care-item">
+                                <span class="care-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 3 22 20 2 20"/><line x1="3" y1="4" x2="21" y2="22"/></svg>
+                                </span>
+                                <div class="care-text"><span class="care-title">No bleach or softener</span><span class="care-sub">Protects fibers</span></div>
+                            </li>
+                            <li class="care-item">
+                                <span class="care-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="6" width="14" height="12" rx="2"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/></svg>
+                                </span>
+                                <div class="care-text"><span class="care-title">Tumble dry low</span><span class="care-sub">Remove promptly</span></div>
+                            </li>
+                            <li class="care-item">
+                                <span class="care-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 16h18l-2-6a3 3 0 0 0-2.83-2H9a5 5 0 0 0-5 5"/><line x1="3" y1="4" x2="21" y2="22"/></svg>
+                                </span>
+                                <div class="care-text"><span class="care-title">Do not iron on print</span><span class="care-sub">Steam inside-out</span></div>
+                            </li>
+                            <li class="care-item">
+                                <span class="care-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 5l6 6 6-6M6 5v14h12V5"/></svg>
+                                </span>
+                                <div class="care-text"><span class="care-title">Hang dry</span><span class="care-sub">Best shape retention</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
             </div>
         </div>
     </main>
+
+    <!-- Size Guide Modal -->
+    <div id="sizeGuideModal" class="size-guide-modal" role="dialog" aria-modal="true" aria-labelledby="sizeGuideTitle" aria-describedby="sizeGuideDesc">
+        <div class="size-guide-backdrop" data-dismiss-size-guide></div>
+        <div class="size-guide-content" role="document">
+            <button class="size-guide-close" id="closeSizeGuide" aria-label="Close size guide">×</button>
+            <h3 id="sizeGuideTitle" class="size-guide-heading">Size Guide</h3>
+            <p id="sizeGuideDesc" class="size-guide-sub">Chest width and garment length</p>
+            <div class="size-guide-grid">
+                <table class="size-guide-table" aria-label="Chest and length measurements">
+                    <thead>
+                        <tr>
+                            <th>Size</th>
+                            <th>Chest</th>
+                            <th>Length</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>S</td><td>21¾"</td><td>26¼"</td></tr>
+                        <tr><td>M</td><td>22¾"</td><td>27"</td></tr>
+                        <tr><td>L</td><td>23¾"</td><td>27¾"</td></tr>
+                        <tr><td>XL</td><td>24¾"</td><td>28½"</td></tr>
+                    </tbody>
+                </table>
+                <div class="size-guide-illustration" aria-hidden="true">
+                    <svg viewBox="0 0 120 160" class="measure-figure" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <!-- Oversized tee silhouette -->
+                        <path d="
+                          M16,34
+                          c6,-7 22,-11 44,-11
+                          c22,0 38,4 44,11
+                          c4,4 7,13 8,22
+                          c1,9 -2,15 -8,19
+                          v56
+                          c0,9 -7,15 -16,15
+                          H40
+                          c-9,0 -16,-6 -16,-15
+                          V75
+                          c-6,-4 -9,-10 -8,-19
+                          c1,-9 4,-18 8,-22
+                          Z
+                          M46,34
+                          c3,6 12,9 14,9
+                          c2,0 11,-3 14,-9
+                          M16,34
+                          c6,5 12,10 18,12
+                          c5,2 8,7 8,12
+                          v13
+                          M104,34
+                          c-6,5 -12,10 -18,12
+                          c-5,2 -8,7 -8,12
+                          v13" opacity=".45"/>
+                      
+                        <!-- Chest and length guides -->
+                        <line x1="18" y1="86" x2="102" y2="86" opacity=".5"/>
+                        <line x1="60" y1="20" x2="60" y2="148" opacity=".5"/>
+                      
+                        <!-- Ticks -->
+                        <path d="M18,86 h-6 M102,86 h6 M60,20 v-6 M60,148 v6" opacity=".5"/>
+                      
+                        <!-- Labels (optional; remove if you render text separately) -->
+                        <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="7" fill="currentColor" stroke="none" opacity=".75">
+                          <text x="28" y="156" text-anchor="middle">Chest</text>
+                          <text x="92" y="156" text-anchor="middle">Length</text>
+                        </g>
+                      </svg>
+                    <div class="measure-labels">
+                        <span>Chest</span>
+                        <span>Length</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -373,5 +495,21 @@
 
     <script src="../js/main.js"></script>
     <script src="../js/tshirt.js"></script>
+
+    <!-- Footer (Minimal) copied from main page -->
+    <footer class="footer-min" aria-label="Site footer">
+      <div class="icons">
+        <a class="tile" href="mailto:angryroostergymwear@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+        <a class="tile" href="https://www.instagram.com/angryroostergymwear/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a class="tile" href="https://www.tiktok.com/@angryroostergymwear" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 3c.5 2.6 2.2 4.5 5 4.8v3.1c-1.7.2-3.3-.4-5-1.6v4.9c0 6.1-6.7 7.9-9.3 4.2-2.2-3-1-7.6 3.9-8.3 1-.1 1.7 0 2.7.4v3.1c-2.8-.9-4.8.4-4.4 2.5.4 2.1 4.9 2.6 4.9-2.4V3h1.2z"/></svg>
+        </a>
+      </div>
+      <div class="copy">&copy; ANGRY ROOSTER </div>
+    </footer>
 </body>
 </html>
